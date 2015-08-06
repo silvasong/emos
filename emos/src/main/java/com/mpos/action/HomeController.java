@@ -59,16 +59,16 @@ public class HomeController extends BaseController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest request){
 		ModelAndView mav=new ModelAndView();	
-		String sql = "select count(*),role.role_name from mpos_cloud.mpos_admin as admin left join mpos_cloud.mpos_admin_role as role on admin.role_id=role.role_id group by role.role_name";
+		String sql = "select count(*),role.role_name from emos.emos_admin as admin left join emos.emos_admin_role as role on admin.role_id=role.role_id group by role.role_name";
 		List<Object[]> qres = orderService.getList(sql, null);
 		mav.addObject("userRole", qres);
 		
-		String storeSql= "select count(*),store.status from mpos_cloud.mpos_store as store group by store.status";
+		String storeSql= "select count(*),store.status from emos.emos_store as store group by store.status";
 		List<Object[]> store =  orderService.getListBySql(storeSql,null);
 		loadData(store);
 		mav.addObject("store", store);
 		
-		String serviceSql = "select count(*),service.status from mpos_cloud.mpos_service as service group by service.status";
+		String serviceSql = "select count(*),service.status from emos.emos_service as service group by service.status";
 		List<Object[]> service = orderService.getListBySql(serviceSql,null);
 		loadData(service);
 		mav.addObject("service", service);
@@ -77,7 +77,7 @@ public class HomeController extends BaseController {
 		params.put("startTime", ConvertTools.getFirstDay());
 		params.put("endTime", ConvertTools.getLastDay());
 		params.put("status", TserviceOrder.TRADE_FINISHED);
-		String orderSql="SELECT count(*),sum(serviceOrder.price) FROM mpos_cloud.mpos_service_order as serviceOrder where serviceOrder.status=:status and serviceOrder.create_time between :startTime and :endTime";
+		String orderSql="SELECT count(*),sum(serviceOrder.price) FROM emos.emos_service_order as serviceOrder where serviceOrder.status=:status and serviceOrder.create_time between :startTime and :endTime";
 		Object[] order = (Object[]) orderService.getBySql(orderSql,params);
 		mav.addObject("order", order);
 		
@@ -130,7 +130,7 @@ public class HomeController extends BaseController {
 			mav.addObject("orderMount", res[1]);
 			params.clear();
 			params.put("storeId", getSessionStoreId(request));
-			String query_product="select count(product.product_id),menu.title from mpos_product as product right join mpos_menu as menu on menu.menu_id = product.menu_id where product.store_id = :storeId group by menu.title";
+			String query_product="select count(product.product_id),menu.title from emos_product as product right join emos_menu as menu on menu.menu_id = product.menu_id where product.store_id = :storeId group by menu.title";
 			List<Object[]> qres = orderService.getList(query_product, params);
 			mav.addObject("productList", qres);
 			mav.setViewName("home/store_home");

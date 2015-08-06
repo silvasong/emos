@@ -35,13 +35,7 @@ import com.mpos.dto.TemaiMessage;
 import com.mpos.service.AdminUserService;
 import com.mpos.service.AdminuserLogService;
 
-/** 
- * @ClassName: LoginController 
- * @Description: 
- * @author Phills Li
- * @date Sep 10, 2014 3:06:32 PM 
- *  
- */
+
 @Controller
 public class LoginController extends BaseController {	
 	@Autowired

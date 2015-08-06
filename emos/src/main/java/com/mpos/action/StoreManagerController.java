@@ -122,7 +122,7 @@ public class StoreManagerController extends BaseController {
 			for (Object object : objects) {
 				Tstore store = (Tstore)object;
 				Map<String, Object> params = getHashMap();
-				String sql = "select service.service_name,admin.email from mpos_cloud.mpos_admin as admin,mpos_cloud.mpos_service as service where admin.store_id =:storeId and service.service_id=:serviceId";
+				String sql = "select service.service_name,admin.email from emos.emos_admin as admin,emos.emos_service as service where admin.store_id =:storeId and service.service_id=:serviceId";
 				//Tservice service = serviceService.get(store.getServiceId());
 				//List<TadminUser> users = adminUserService.getUserByStoreId(store.getStoreId());
 				params.put("storeId", store.getStoreId());
