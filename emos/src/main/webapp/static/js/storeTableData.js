@@ -331,11 +331,11 @@ var StoreTable = function () {
                     	}
                     },
                     "storeName": {
-                    	required: true
-                    },
-                    "publicKey": {
-                    	required: true
-                    }
+                    	required: true}
+//                    ,
+//                    "publicKey": {
+//                    	required: true
+//                    }
                 },
 
                 invalidHandler: function (event, validator) { //display error alert on form submit                	

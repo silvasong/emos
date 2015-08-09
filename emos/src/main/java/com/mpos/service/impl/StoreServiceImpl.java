@@ -48,6 +48,8 @@ public class StoreServiceImpl implements StoreService {
 		// TODO Auto-generated method stub
 		Tservice service= serviceDao.get(store.getServiceId());
 		store.setServiceDate(ConvertTools.longTimeAIntDay(System.currentTimeMillis(), service.getValidDays()));
+		//取消用户访问密码设置 
+		store.setPublicKey("000000");
 		storeDao.save(store);
 	}
 

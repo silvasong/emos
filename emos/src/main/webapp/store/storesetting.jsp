@@ -123,7 +123,7 @@
 											<%-- <td style="width: 35%"><span class="text-muted" id="publicKey">
 													${store.publicKey} </span></td> --%>
 										</tr>
-										<tr>
+										<%-- <tr>
 											<td style="width: 15%"><s:message code="access.password" /></td>
 											<td style="width: 50%"><a href="#" id="password"
 												data-type="text" data-pk="1"
@@ -133,9 +133,9 @@
 													<span class="label label-danger"><s:message code="store.set.note"/> </span> <span>
 														用于客户端的访问密码 </span>
 												</div></td>
-											<%-- <td style="width: 35%"><span class="text-muted" id="publicKey">
-													${store.publicKey} </span></td> --%>
-										</tr>
+											<td style="width: 35%"><span class="text-muted" id="publicKey">
+													${store.publicKey} </span></td>
+										</tr> --%>
 										<tr>
 											<td style="width: 15%"><s:message
 													code="language.setting" /></td>

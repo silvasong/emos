@@ -234,7 +234,7 @@ public class MobileAPI {
 	 * bing push set
 	 * @param response
 	 * @param apiKey
-	 * @param jsonStr
+	 * @param jsonStr   
 	 * @return
 	 */
 	@RequestMapping(value = "bingPushSet", method = RequestMethod.POST)
@@ -565,6 +565,7 @@ public class MobileAPI {
 	public String putOrder(HttpServletResponse response, @RequestHeader("Authorization") String apiKey, @RequestBody String jsonStr) {
 		// 获取缓存apiToken
 		String apiToken = SystemConfig.Admin_Setting_Map.get(SystemConstants.CONFIG_API_TOKEN);
+		
 		JSONObject respJson = new JSONObject();
 		// 判断apiToken是否一致
 		if (apiKey == null || !apiKey.equalsIgnoreCase(apiToken)) {
