@@ -24,16 +24,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mpos.commons.EMailTool;
-import com.mpos.commons.LogManageTools;
+
 import com.mpos.commons.MposException;
 import com.mpos.commons.SecurityTools;
 import com.mpos.commons.SystemConfig;
 import com.mpos.commons.SystemConstants;
-import com.mpos.dto.TadminLog;
+
 import com.mpos.dto.TadminUser;
 import com.mpos.dto.TemaiMessage;
 import com.mpos.service.AdminUserService;
-import com.mpos.service.AdminuserLogService;
+
 
 
 @Controller
@@ -41,8 +41,7 @@ public class LoginController extends BaseController {
 	@Autowired
 	private AdminUserService adminUserService;		
 	
-    @Autowired
-    private AdminuserLogService adminuserLogService;
+  
 	/** 
 	 * <p>Open the login page</p>
 	 * @Title: login 
@@ -71,8 +70,8 @@ public class LoginController extends BaseController {
 	 */ 
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest request,TadminUser user){
-		TadminLog adminLog = new TadminLog();
-		adminLog.setAdminId(user.getAdminId());
+		
+		
 		TadminUser tUser=(TadminUser)adminUserService.getAdminUserById(user.getAdminId());
 		ModelAndView mav=new ModelAndView();
 		Long time = (Long) request.getSession().getAttribute(SystemConstants.LOGIN_STATUS);
@@ -83,32 +82,32 @@ public class LoginController extends BaseController {
 				}else{
 					mav.addObject("user", new TadminUser());
 				}
-				adminLog.setLevel((short)1);
+				
 				log_content=SystemConstants.LOG_FAILURE+":userid locked.";
 		}else if(tUser==null){
 			mav.addObject(ERROR_MSG_KEY, getMessage(request,"login.failed.pwd.user"));
 			mav.addObject("user", new TadminUser());
 			saveLoginErrorTims(request);
-			adminLog.setLevel((short)1);
+			
 			log_content=SystemConstants.LOG_FAILURE+":userid error";
 		}else if(!tUser.getStatus() && !"admin".equals(tUser.getAdminId())){
 			mav.addObject(ERROR_MSG_KEY, "账号未激活");
 			mav.addObject("user", new TadminUser());
 			saveLoginErrorTims(request);
-			adminLog.setLevel((short)1);
+			
 			log_content=SystemConstants.LOG_FAILURE+":userid error";
 		}else if(!tUser.getAdminRole().getStatus() && !"admin".equals(tUser.getAdminId())){
 			mav.addObject(ERROR_MSG_KEY, getMessage(request,"login.failed.pwd.user"));
 			mav.addObject("user", new TadminUser());
 			saveLoginErrorTims(request);
-			adminLog.setLevel((short)1);
+			
 			log_content=SystemConstants.LOG_FAILURE+":userid error";
 		}
 		else if(!SecurityTools.MD5(user.getPassword()).equalsIgnoreCase(tUser.getPassword())){
 			mav.addObject(ERROR_MSG_KEY, getMessage(request,"login.failed.pwd.user"));
 			mav.addObject("user", tUser);
 			saveLoginErrorTims(request);
-			adminLog.setLevel((short)1);
+	
 			log_content=SystemConstants.LOG_FAILURE+":password error.";
 		}else{
 			String toUrl=(String)request.getSession().getAttribute(LOGIN_TO_URL);
@@ -126,22 +125,21 @@ public class LoginController extends BaseController {
 			mav.setViewName("redirect:"+toUrl);
 			log_content=SystemConstants.LOG_SUCCESS+":login success.";
 		}
-		adminLog.setAdminId(user.getAdminId());
-		LogManageTools.writeAdminLog(log_content,adminLog,request);
+		
 		return mav;
 	}
 	
 	@RequestMapping(value="/common/ResetPassword",method=RequestMethod.POST)
 	public ModelAndView resetPassword(HttpServletRequest request ,String email){
 		ModelAndView mav = new ModelAndView();
-		TadminLog adminLog = new TadminLog();
+		
 		String url = request.getRequestURL().toString().replaceFirst( request.getServletPath(), "");
 		TadminUser adminUser = adminUserService.getTadminUsersByEmail(email.toLowerCase());
 		if(adminUser == null){
 			 adminUser = new TadminUser();
 			 mav.addObject(ERROR_MSG_KEY,"邮箱不存在");
 		}else{
-			adminLog.setAdminId(adminUser.getAdminId());
+			
 			String random = UUID.randomUUID().toString().trim().replace("-","").substring(0,6);
 			String code = SecurityTools.MD5(email+random);
 			adminUser.setCode(code);
@@ -156,7 +154,7 @@ public class LoginController extends BaseController {
 			TemaiMessage message = TemaiMessage.getRest(map);
 			EMailTool.send(message);
 			mav.addObject("msg", getMessage(request,"reset.pwd.success"));
-			LogManageTools.writeAdminLog(log_content, adminLog,request);
+		
 		}
 		mav.addObject("user",adminUser);
 		mav.setViewName("login");
@@ -239,11 +237,11 @@ public class LoginController extends BaseController {
 	 */ 
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session,HttpServletRequest request){
-		TadminLog adminLog = new TadminLog();
+		
 		if((TadminUser)session.getAttribute(SystemConstants.LOGINED)!=null){
-		adminLog.setAdminId(((TadminUser)session.getAttribute(SystemConstants.LOGINED)).getAdminId());
+		
 		log_content="success:login out.";
-		LogManageTools.writeAdminLog(log_content, adminLog,request);
+		
 		session.removeAttribute(SystemConstants.LOGINED);
 		session.invalidate();
 		}

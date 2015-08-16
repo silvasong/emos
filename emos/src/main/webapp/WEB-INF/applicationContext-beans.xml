@@ -18,7 +18,7 @@
 	
 	<bean id="messageService" class="com.mpos.service.impl.MessageServiceImpl" autowire="byName"/>
 	
-	<bean id="serviceOrderService" class="com.mpos.service.impl.ServiceOrderServiceImpl" autowire="byName"/>
+	
 	
 	<bean id="serviceService" class="com.mpos.service.impl.ServiceServiceImpl" autowire="byName"/>
 	
@@ -48,7 +48,6 @@
 	
 	<bean id="adminInfoService" class="com.mpos.service.impl.AdminInfoServiceImpl" autowire="byName"/>		
 	
-	<bean id="adminuserLogService" class="com.mpos.service.impl.AdminuserLogServiceImpl" autowire="byName"/>
 	
 	<bean id="systemSettingService" class="com.mpos.service.impl.SystemSettingServiceImpl" autowire="byName"/>				
 	

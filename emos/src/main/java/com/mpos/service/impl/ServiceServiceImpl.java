@@ -24,7 +24,7 @@ import com.mpos.commons.SecurityTools;
 import com.mpos.dao.AdminInfoDao;
 import com.mpos.dao.AdminUserDao;
 import com.mpos.dao.ServiceDao;
-import com.mpos.dao.ServiceOrderDao;
+
 import com.mpos.dao.StoreDao;
 import com.mpos.dao.TableDao;
 import com.mpos.dto.TadminInfo;
@@ -32,7 +32,7 @@ import com.mpos.dto.TadminRole;
 import com.mpos.dto.TadminUser;
 import com.mpos.dto.TemaiMessage;
 import com.mpos.dto.Tservice;
-import com.mpos.dto.TserviceOrder;
+
 import com.mpos.dto.Tstore;
 import com.mpos.model.DataTableParamter;
 import com.mpos.model.PagingData;
@@ -50,8 +50,7 @@ public class ServiceServiceImpl implements ServiceService {
 	private AdminInfoDao adminInfoDao;
 	@Autowired
 	private TableDao tableDao;
-	@Autowired
-	private ServiceOrderDao serviceOrderDao;
+	
 	public void save(Tservice service) {
 		// TODO Auto-generated method stub
 		serviceDao.save(service);
@@ -164,15 +163,8 @@ public class ServiceServiceImpl implements ServiceService {
 		adminInfoDao.create(info);
 		if(service.getServiceId()>0&&service.getServicePrice()>0){
 			String orderNum= "CampRay"+System.currentTimeMillis();
-			TserviceOrder order = new TserviceOrder();
-			order.setCreateTime(System.currentTimeMillis());
-			order.setEmail(user.getEmail());
-			order.setStatus(0);
-			order.setPrice(service.getServicePrice());
-			order.setServiceId(service);
-			order.setServiceName(service.getServiceName());
-			order.setOrderNum(orderNum);
-			serviceOrderDao.create(order);
+			
+			
 			res.put("price", service.getServicePrice()+"");
 			res.put("orderNum", orderNum);
 			res.put("subject", service.getServiceName());

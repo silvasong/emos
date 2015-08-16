@@ -34,11 +34,11 @@
 	<property name="dataSource" ref="dataSource" />	 	
 	<property name="mappingResources">
 	  <list>		
-	      <value>cfg/hql.xml</value>	      
+	           
 	      <value>cfg/AdminUser.hbm.xml</value>
 	      <value>cfg/AdminRole.hbm.xml</value>
 	      <value>cfg/AdminInfo.hbm.xml</value>
-	      <value>cfg/AdminLog.hbm.xml</value>
+	      
 	      <value>cfg/AdminRoleRights.hbm.xml</value>
 	      <value>cfg/AdminNodes.hbm.xml</value>	      
 	      <value>cfg/Setting.hbm.xml</value>
@@ -61,7 +61,7 @@
           <value>cfg/Device.hbm.xml</value>
           <value>cfg/Store.hbm.xml</value>
           <value>cfg/Service.hbm.xml</value>
-          <value>cfg/ServiceOrder.hbm.xml</value>
+          
            <value>cfg/Message.hbm.xml</value>
 	  </list>
 	</property>

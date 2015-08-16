@@ -22,7 +22,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.mpos.commons.ConvertTools;
-import com.mpos.commons.LogManageTools;
+
 import com.mpos.commons.MposException;
 import com.mpos.commons.SystemConstants;
 import com.mpos.dto.TattributeValue;
@@ -64,10 +64,7 @@ public class CategoryController extends BaseController {
 	 * 操作内容
 	 */
 	private String handleContent = "";
-	/**
-	 * 日志级别
-	 */
-	private short level = LogManageTools.NOR_LEVEL;
+
 		
 
 	@RequestMapping(method=RequestMethod.GET)
@@ -126,9 +123,9 @@ public class CategoryController extends BaseController {
 			respJson.put("status", false);
 			respJson.put("info", getMessage(request,be.getErrorID(),be.getMessage()));
 			handleContent = "添加分类组:"+category.getName()+"失败";
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}		
-		LogManageTools.writeAdminLog(handleContent,level, request);
+	
 		return JSON.toJSONString(respJson);
 	}
 	
@@ -148,9 +145,9 @@ public class CategoryController extends BaseController {
 			respJson.put("info", getMessage(request,be.getErrorID(),be.getMessage()));
 			be.printStackTrace();
 			handleContent = "修改分类组:"+category.getName()+"失败";
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}	
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		return JSON.toJSONString(respJson);		
 	}
 	
@@ -171,9 +168,9 @@ public class CategoryController extends BaseController {
 			respJson.put("info", getMessage(request,be.getErrorID(),be.getMessage()));
 			be.printStackTrace();
 			handleContent = "复制创建分类组:"+idArr.toString()+"失败";
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}	
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		return JSON.toJSONString(respJson);	
 	}
 	
@@ -193,9 +190,9 @@ public class CategoryController extends BaseController {
 			respJson.put("status", false);
 			respJson.put("info", getMessage(request,be.getErrorID(),be.getMessage()));
 			handleContent = "删除分类组:"+idArr.toString()+"失败";
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}	
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		return JSON.toJSONString(respJson);	
 	}
 	

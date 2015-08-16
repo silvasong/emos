@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.mpos.commons.BaiduPushTool;
 import com.mpos.commons.ConvertTools;
-import com.mpos.commons.LogManageTools;
+
 import com.mpos.commons.MposException;
 import com.mpos.commons.SecurityTools;
 import com.mpos.commons.SystemConfig;
@@ -32,12 +32,12 @@ import com.mpos.commons.BaiduPushTool.Notification;
 import com.mpos.dto.ImageModel;
 import com.mpos.dto.Tlanguage;
 import com.mpos.dto.Tservice;
-import com.mpos.dto.TserviceOrder;
+
 import com.mpos.dto.Tstore;
 import com.mpos.service.AdminUserService;
 import com.mpos.service.GoodsService;
 import com.mpos.service.LanguageService;
-import com.mpos.service.ServiceOrderService;
+
 import com.mpos.service.ServiceService;
 import com.mpos.service.StoreService;
 /**
@@ -53,8 +53,7 @@ public class StoreContrller extends BaseController {
 	private StoreService storeService;
 	@Autowired
 	private ServiceService serviceService;
-	@Autowired
-	private ServiceOrderService serviceOrderService;
+	
 	@Autowired
 	private LanguageService languageService;
 	@Autowired
@@ -73,10 +72,7 @@ public class StoreContrller extends BaseController {
 	 * 操作内容
 	 */
 	private String handleContent = "";
-	/**
-	 * 日志级别
-	 */
-	private short level = LogManageTools.NOR_LEVEL;
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView getStoreSetting(HttpServletRequest request){
 		Integer storeId = getSessionStoreId(request);
@@ -202,9 +198,9 @@ public class StoreContrller extends BaseController {
 			status = false;
 			info = e.getMessage();
 			handleContent = "上传logo失败;";
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}		
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		res.put("status", status);
 		res.put("info", info);
 		return JSON.toJSONString(res);
@@ -315,9 +311,9 @@ public class StoreContrller extends BaseController {
 			status = false;
 			info = e.getMessage();
 			handleContent = "上传background失败;";
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}		
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		res.put("status", status);
 		res.put("info", info);
 		return JSON.toJSONString(res);
@@ -365,9 +361,9 @@ public class StoreContrller extends BaseController {
 			//info = getMessage(request, be.getErrorID(), be.getMessage());
 			status = false;
 			handleContent = "修改公钥失败;"+be.getMessage();
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}		
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		res.put("status", status);
 		res.put("info", info);
 		return JSON.toJSONString(res);
@@ -401,9 +397,9 @@ public class StoreContrller extends BaseController {
 			info = getMessage(request, be.getErrorID(), be.getMessage());
 			status = false;
 			handleContent = "客户端语言配置失败;"+be.getMessage();
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}		
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		res.put("status", status);
 		res.put("info", info);
 		return JSON.toJSONString(res);
@@ -434,9 +430,8 @@ public class StoreContrller extends BaseController {
 			info = getMessage(request, be.getErrorID(), be.getMessage());
 			status = false;
 			handleContent = "修改店铺名称失败;"+be.getMessage();
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}	
-		LogManageTools.writeAdminLog(handleContent,level, request);
 		res.put("status", status);
 		res.put("info", info);
 		return JSON.toJSONString(res);
@@ -467,9 +462,9 @@ public class StoreContrller extends BaseController {
 			info = getMessage(request, be.getErrorID(), be.getMessage());
 			status = false;
 			handleContent = "修改店铺货币符号失败;"+be.getMessage();
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}	
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		res.put("status",status);
 		res.put("info",info);
 		return JSON.toJSONString(res);
@@ -500,9 +495,9 @@ public class StoreContrller extends BaseController {
 			info = getMessage(request, be.getErrorID(), be.getMessage());
 			status = false;
 			handleContent = "修改店铺打印类型失败;"+be.getMessage();
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}	
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		res.put("status",status);
 		res.put("info",info);
 		return JSON.toJSONString(res);
@@ -537,12 +532,7 @@ public class StoreContrller extends BaseController {
 			params.put("serviceId", serviceId);
 			params.put("serviceDate", ConvertTools.longTimeAIntDay(serviceDate, validDays));
 			storeService.update(updateServiceHql, params);
-			TserviceOrder serviceOrder = new TserviceOrder();
-			serviceOrder.setCreateTime(System.currentTimeMillis());
-			serviceOrder.setPrice(service.getServicePrice());
-			serviceOrder.setServiceId(service);
-			serviceOrder.setEmail(getSessionUser(request).getEmail());
-			serviceOrder.setStatus(1);
+			
 			info = getMessage(request,"operate.success");
 		} catch (MposException be) {
 			info = getMessage(request, be.getErrorID(), be.getMessage());

@@ -31,7 +31,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mpos.commons.ConvertTools;
-import com.mpos.commons.LogManageTools;
+
 import com.mpos.commons.MposException;
 import com.mpos.dto.Tcategory;
 import com.mpos.dto.Tlanguage;
@@ -91,10 +91,7 @@ private LocalizedFieldService localizedFieldService;
  * 操作内容
  */
 private String handleContent = "";
-/**
- * 日志级别
- */
-private short level = LogManageTools.NOR_LEVEL;
+
 
 private LinkedHashMap<Integer,FileMeta> filesMap = new LinkedHashMap<Integer,FileMeta>();
 private int imgIndex=0;	
@@ -340,11 +337,11 @@ private int imgIndex=0;
 			e.printStackTrace();
 		/*	mav.addObject("errorMsg", e.getMessage());*/
 			handleContent = "修改商品:"+model.getProductName()+"失败;";
-			level = LogManageTools.FAIL_LEVEL;
+			
 			request.getSession().setAttribute("editerrorMsg", getMessage(request,e.getErrorID(),e.getMessage()));
 			mav.setViewName("redirect:/editgoods/"+model.getProductId());
 		}		
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		return mav;
 		}
 	@RequestMapping(value="/editgoods/getImages/{ids}",method=RequestMethod.POST)

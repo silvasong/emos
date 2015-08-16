@@ -27,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mpos.commons.ConvertTools;
-import com.mpos.commons.LogManageTools;
+
 import com.mpos.commons.MposException;
 import com.mpos.dto.Tlanguage;
 import com.mpos.dto.TlocalizedField;
@@ -62,10 +62,7 @@ public class MenuController extends BaseController {
 	 * 操作内容
 	 */
 	private String handleContent = "";
-	/**
-	 * 日志级别
-	 */
-	private short level = LogManageTools.NOR_LEVEL;
+	
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView menu(HttpServletRequest request) {
@@ -112,9 +109,9 @@ public class MenuController extends BaseController {
 			respJson.put("info",
 					getMessage(request, be.getErrorID(), be.getMessage()));
 			handleContent = "添加客户端菜单:"+page.getMenu().getTitle()+"失败";
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		return JSON.toJSONString(respJson);
 	}
 
@@ -150,9 +147,9 @@ public class MenuController extends BaseController {
 			respJson.put("status", false);
 			respJson.put("info",getMessage(request, be.getErrorID(), be.getMessage()));
 			handleContent = "修改客户端菜单:"+page.getMenu().getTitle()+"失败;";
-			level = LogManageTools.FAIL_LEVEL;
+		
 		}
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		return JSON.toJSONString(respJson);
 	}
 
@@ -173,9 +170,9 @@ public class MenuController extends BaseController {
 			respJson.put("info",
 					getMessage(request, be.getErrorID(), be.getMessage()));
 			handleContent = "删除菜单:"+idArr.toString()+"失败;";
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		return JSON.toJSONString(respJson);
 	}
 

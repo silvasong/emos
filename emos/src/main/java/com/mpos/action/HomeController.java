@@ -32,7 +32,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mpos.commons.ConvertTools;
 import com.mpos.commons.MposException;
-import com.mpos.dto.TserviceOrder;
+
 import com.mpos.service.AdminUserService;
 import com.mpos.service.OrderService;
 //import com.bps.service.InterfaceService;
@@ -76,10 +76,10 @@ public class HomeController extends BaseController {
 		Map<String, Object> params = getHashMap();
 		params.put("startTime", ConvertTools.getFirstDay());
 		params.put("endTime", ConvertTools.getLastDay());
-		params.put("status", TserviceOrder.TRADE_FINISHED);
-		String orderSql="SELECT count(*),sum(serviceOrder.price) FROM emos.emos_service_order as serviceOrder where serviceOrder.status=:status and serviceOrder.create_time between :startTime and :endTime";
+		
+		/*String orderSql="SELECT count(*),sum(serviceOrder.price) FROM emos.emos_service_order as serviceOrder where serviceOrder.status=:status and serviceOrder.create_time between :startTime and :endTime";
 		Object[] order = (Object[]) orderService.getBySql(orderSql,params);
-		mav.addObject("order", order);
+		mav.addObject("order", order);*/
 		
 		mav.setViewName("home/home");
 		return mav;

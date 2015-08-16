@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mpos.commons.ConvertTools;
-import com.mpos.commons.LogManageTools;
 import com.mpos.commons.MposException;
 import com.mpos.dto.Tstore;
 import com.mpos.dto.Ttable;
@@ -37,10 +36,7 @@ public class TableController extends BaseController {
 	 * 操作内容
 	 */
 	private String handleContent = "";
-	/**
-	 * 日志级别
-	 */
-	private short level = LogManageTools.NOR_LEVEL;
+	
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView table(HttpServletRequest request){
@@ -80,9 +76,9 @@ public class TableController extends BaseController {
 			ok = false;
 			res.put("info", getMessage(request,be.getErrorID(),be.getMessage()));
 			handleContent = "添加桌号:"+table.getTableName()+"失败;";
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}		
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		res.put("status", ok);
 		return JSON.toJSONString(res);
 	}
@@ -102,9 +98,9 @@ public class TableController extends BaseController {
 			ok = false;
 			res.put("info", getMessage(request,be.getErrorID(),be.getMessage()));
 			handleContent = "删除桌号:"+idArr.toString()+"失败;";
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}		
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		res.put("status", ok);
 		return JSON.toJSONString(res);
 	}
@@ -121,9 +117,9 @@ public class TableController extends BaseController {
 			ok = false;
 			res.put("info", getMessage(request,be.getErrorID(),be.getMessage()));
 			handleContent = "修改桌号:"+table.getTableName()+"失败";
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}		
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		res.put("status", ok);
 		return JSON.toJSONString(res);
 	}

@@ -31,7 +31,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mpos.commons.ConvertTools;
-import com.mpos.commons.LogManageTools;
+
 import com.mpos.commons.MposException;
 import com.mpos.commons.SystemConfig;
 import com.mpos.dto.TattributeValue;
@@ -105,10 +105,7 @@ public class GoodsController extends BaseController{
 	 * 操作内容
 	 */
 	private String handleContent = "";
-	/**
-	 * 日志级别
-	 */
-	private short level = LogManageTools.NOR_LEVEL;
+	
 	
 	private LinkedHashMap<Integer,FileMeta> filesMap = new LinkedHashMap<Integer,FileMeta>();
 	private int imgIndex=0;	
@@ -226,9 +223,9 @@ public class GoodsController extends BaseController{
 			respJson.put("status", false);
 			respJson.put("info", getMessage(request,be.getErrorID(),be.getMessage()));
 			handleContent = "操作商品失败;操作ID为:"+idArr.toString();
-			level = LogManageTools.FAIL_LEVEL;
+		
 		}	
-		LogManageTools.writeAdminLog(handleContent,level, request);
+
 		return JSON.toJSONString(respJson);	
 	}
 	
@@ -250,9 +247,9 @@ public class GoodsController extends BaseController{
 			respJson.put("status", false);
 			respJson.put("info", getMessage(request,be.getErrorID(),be.getMessage()));
 			handleContent = "删除商品失败;操作ID为:"+idArr.toString();
-			level = LogManageTools.FAIL_LEVEL;
+			
 		}	
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		return JSON.toJSONString(respJson);	
 	}
 	@RequestMapping(value="/activegoods/{ids}",method=RequestMethod.POST)
@@ -373,12 +370,12 @@ public class GoodsController extends BaseController{
 		
 			/*mav.addObject("errorMsg", e.getMessage());*/
 			handleContent = "添加商品:"+model.getProductName()+"失败";
-			level = LogManageTools.FAIL_LEVEL;
+			
 			
 			request.getSession().setAttribute("adderrorMsg", getMessage(request,e.getErrorID(),e.getMessage()));
 			mav.setViewName("redirect:/goods/addgoods");
 		}	
-		LogManageTools.writeAdminLog(handleContent,level, request);
+		
 		return mav;
 	}
 	@RequestMapping(value="/addattributes",method=RequestMethod.POST)

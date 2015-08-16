@@ -32,12 +32,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.mpos.commons.LogManageTools;
+
 import com.mpos.commons.MposException;
 import com.mpos.commons.SecurityTools;
 import com.mpos.commons.SystemConstants;
 import com.mpos.dto.TadminInfo;
-import com.mpos.dto.TadminLog;
+
 import com.mpos.dto.TadminUser;
 import com.mpos.model.ChangePasswordModel;
 import com.mpos.service.AdminInfoService;
@@ -93,7 +93,7 @@ public class AdminInfoController extends BaseController {
 	@ResponseBody
 	public String editAdminInfo(HttpServletRequest request,TadminInfo adminInfo,HttpSession session){
 		JSONObject respJson = new JSONObject();
-		TadminLog adminLog = new TadminLog();
+		
 		try{
 			TadminUser adminUser = (TadminUser) request.getSession().getAttribute(SystemConstants.LOGINED);
 			TadminUser user = adminUserService.getTadminUsersByEmail(adminInfo.getEmail());
@@ -112,7 +112,7 @@ public class AdminInfoController extends BaseController {
 				adminUserService.updateAdminUser(user);
 				setSessionUser(request, user);
 			}
-		    adminLog.setAdminId(adminId);
+		  
 			adminInfo.setAdminId(adminId);
 			adminInfoService.updateAdminInfo(adminInfo);
 			log_content="success:edit profile.";
@@ -122,7 +122,7 @@ public class AdminInfoController extends BaseController {
 			respJson.put("status", false);
 			respJson.put("info", getMessage(request,be.getErrorID(),be.getMessage()));
 		}
-		LogManageTools.writeAdminLog(log_content, adminLog,request);
+		
 		return JSON.toJSONString(respJson);
 	   }
 	 
@@ -130,13 +130,13 @@ public class AdminInfoController extends BaseController {
 	@ResponseBody
 	public String changePassword(HttpServletRequest request,ChangePasswordModel cpMod){
 		JSONObject respJson = new JSONObject();
-		TadminLog adminLog = new TadminLog();
+		
 		try{
 			TadminUser adminUser = (TadminUser) request.getSession().getAttribute(SystemConstants.LOGINED);
-			adminLog.setAdminId(adminUser.getAdminId());
+			
 			if(!SecurityTools.MD5(cpMod.getOldpassword()).equals(adminUser.getPassword())){
 				log_content="error:old password is error.";
-				adminLog.setLevel((short) 1);
+				
                 respJson.put("status", true);    
 				respJson.put("olderror",true);
 				respJson.put("info", "当前密码不正确");
@@ -154,13 +154,13 @@ public class AdminInfoController extends BaseController {
 			respJson.put("status", false);
 			respJson.put("info", getMessage(request,be.getErrorID(),be.getMessage()));
 		}
-		LogManageTools.writeAdminLog(log_content, adminLog,request);
+		
 		return JSON.toJSONString(respJson);
 	   }
 	
 	@RequestMapping(value="chageAvatar",method=RequestMethod.POST)
 	public String changeAvatar(HttpServletRequest request,@RequestParam(value = "avatar", required = false) MultipartFile file) throws IOException{
-		TadminLog adminLog = new TadminLog();
+		
 		InputStream inputStream = file.getInputStream();
 		byte [] avatar=new byte[1048576];
 		inputStream.read(avatar);
@@ -170,13 +170,13 @@ public class AdminInfoController extends BaseController {
 			String adminId=adminUser.getAdminId();
 			adminInfo=adminInfoService.getAdminInfoById(adminId);
 			adminInfo.setAvatar(avatar);
-			adminLog.setAdminId(adminId);
+			
 			adminInfoService.updateAdminInfoAvatar(adminInfo);
 			log_content="success:change avatar.";
 		}catch(MposException be){
 			
 		}
-		LogManageTools.writeAdminLog(log_content, adminLog,request);
+		
 		return "redirect:/userprofile"; 
 	   }
       

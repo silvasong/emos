@@ -51,7 +51,7 @@
 <body class="login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-	<span class="label" style="font-size:32px;font-weight: 800;font-family: 黑体;">云菜单管理系统</span>
+	<span class="label" style="font-size:32px;font-weight: 800;font-family: 黑体;">菜单管理系统</span>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -136,7 +136,7 @@
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
 <div class="copyright">
-	 2014 &copy; CampRay. ECP Management System.
+	 
 </div>
 <!-- END COPYRIGHT -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
