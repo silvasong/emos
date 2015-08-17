@@ -58,7 +58,7 @@ import com.mpos.service.LanguageService;
 import com.mpos.service.LocalizedFieldService;
 import com.mpos.service.MenuService;
 import com.mpos.service.ProductAttributeService;
-import com.mpos.service.ProductReleaseService;
+
 import com.mpos.service.StoreService;
 
 @Controller
@@ -90,8 +90,6 @@ public class GoodsController extends BaseController{
 	@Autowired
 	private GoodsAttributeService goodsAttributeService;
 	
-	@Autowired
-	private ProductReleaseService productReleaseService;
 	
 	@Autowired
 	private LocalizedFieldService localizedFieldService;

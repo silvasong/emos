@@ -17,6 +17,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mpos.commons.ConvertTools;
 import com.mpos.commons.EMailTool;
@@ -24,15 +25,13 @@ import com.mpos.commons.SecurityTools;
 import com.mpos.dao.AdminInfoDao;
 import com.mpos.dao.AdminUserDao;
 import com.mpos.dao.ServiceDao;
-
 import com.mpos.dao.StoreDao;
-import com.mpos.dao.TableDao;
+
 import com.mpos.dto.TadminInfo;
 import com.mpos.dto.TadminRole;
 import com.mpos.dto.TadminUser;
 import com.mpos.dto.TemaiMessage;
 import com.mpos.dto.Tservice;
-
 import com.mpos.dto.Tstore;
 import com.mpos.model.DataTableParamter;
 import com.mpos.model.PagingData;
@@ -48,8 +47,7 @@ public class ServiceServiceImpl implements ServiceService {
 	private AdminUserDao adminUserDao;
 	@Autowired
 	private AdminInfoDao adminInfoDao;
-	@Autowired
-	private TableDao tableDao;
+	
 	
 	public void save(Tservice service) {
 		// TODO Auto-generated method stub
@@ -78,7 +76,7 @@ public class ServiceServiceImpl implements ServiceService {
 		//criteria.add(Restrictions.eq("status", true));
 		if(searchJsonStr!=null&&!searchJsonStr.isEmpty()){
 			List<Criterion> criterionList = new ArrayList<Criterion>();
-			JSONObject json = (JSONObject) JSONObject.parse(searchJsonStr);
+			JSONObject json = (JSONObject) JSON.parse(searchJsonStr);
 			Set<String> keys = json.keySet();
 			for(String key:keys){
 				String value = json.getString(key);

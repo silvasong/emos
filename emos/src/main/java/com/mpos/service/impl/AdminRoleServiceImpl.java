@@ -20,6 +20,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mpos.dao.AdminRoleDao;
 import com.mpos.dto.TadminRole;
@@ -133,7 +134,7 @@ public class AdminRoleServiceImpl implements AdminRoleService {
 		//criteria.add(Restrictions.ne("roleId", 4));
 		if (searchJsonStr != null && !searchJsonStr.isEmpty()) {
 			List<Criterion> criterionList = new ArrayList<Criterion>();
-			JSONObject json = (JSONObject) JSONObject.parse(searchJsonStr);
+			JSONObject json = (JSONObject) JSON.parse(searchJsonStr);
 			Set<String> keys = json.keySet();
 			for (String key : keys) {
 				String value = json.getString(key);

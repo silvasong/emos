@@ -17,7 +17,7 @@ public class ClassTools {
 			if(resources != null){
 				dir = new ArrayList<File>();
 				while (resources.hasMoreElements()) {
-					URL url = (URL) resources.nextElement();
+					URL url = resources.nextElement();
 					
 					dir.add(new File(url.getPath().replace("%20", " ")));
 				}

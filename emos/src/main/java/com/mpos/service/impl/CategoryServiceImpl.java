@@ -15,6 +15,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mpos.commons.SystemConstants;
 import com.mpos.dao.AttributeValueDao;
@@ -108,7 +109,7 @@ public class CategoryServiceImpl implements CategoryService {
 		criteria.add(Restrictions.eq("status", true));
 		if(searchJsonStr!=null&&!searchJsonStr.isEmpty()){
 			List<Criterion> criterionList = new ArrayList<Criterion>();
-			JSONObject json = (JSONObject) JSONObject.parse(searchJsonStr);
+			JSONObject json = (JSONObject) JSON.parse(searchJsonStr);
 			Set<String> keys = json.keySet();
 			for(String key:keys){
 				String value = json.getString(key);

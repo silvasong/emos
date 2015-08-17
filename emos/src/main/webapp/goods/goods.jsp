@@ -167,11 +167,11 @@
 					</form>
 				</div>
 				<!-- END SEARCH FORM -->
-				<div class="row">
+				<!-- <div class="row">
 				  	<div class="col-md-12">
 						<label style="font-size: 12px;color:red;margin-left: 20px">请注意：对商品进行编辑和上架之后请到发布管理进行发布</label>
 					</div>
-				</div>
+				</div> -->
 				<!-- BEGIN PAGE CONTENT-->
 				<!-- 
 				<div class="row profile">

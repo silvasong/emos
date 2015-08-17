@@ -8,18 +8,12 @@
  */
 package com.mpos.action;
 
-import java.io.File;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSendException;
@@ -30,26 +24,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
-import com.alipay.config.AlipayConfig;
-import com.alipay.util.AlipayNotify;
-import com.alipay.util.AlipaySubmit;
-import com.mpos.commons.EMailTool;
 import com.mpos.commons.SecurityTools;
 import com.mpos.commons.SystemConfig;
 import com.mpos.commons.SystemConstants;
 import com.mpos.dto.TadminUser;
-import com.mpos.dto.TemaiMessage;
-import com.mpos.dto.Tmessage;
 import com.mpos.dto.Tservice;
 
-import com.mpos.dto.Ttable;
+
 import com.mpos.service.AdminInfoService;
 import com.mpos.service.AdminUserService;
-import com.mpos.service.MessageService;
+
 
 import com.mpos.service.ServiceService;
 import com.mpos.service.StoreService;
-import com.mpos.service.TableService;
+
 
 
 
@@ -59,19 +47,17 @@ public class CommonController extends BaseController {
 
 	@SuppressWarnings("unused")
 	private Logger logger = Logger.getLogger(CommonController.class);
-	public List<Ttable> tables = new ArrayList<Ttable>();
+	
 	@Autowired
 	private AdminUserService adminUserService;
 	@Autowired
 	private StoreService storeService;
 	@Autowired
 	private ServiceService serviceService;
-	@Autowired
-	private TableService tableService;
+	
 	@Autowired
 	private AdminInfoService adminInfoService;
-	@Autowired
-	private MessageService messageService;
+	
 	
 	
 	private Map<String, String>  map = new HashMap<String, String>();
@@ -126,20 +112,7 @@ public class CommonController extends BaseController {
 		return JSON.toJSONString(!adminUserService.emailExist(email));
 	}
 	
-	@RequestMapping(value="addMsg",method=RequestMethod.POST)
-	@ResponseBody
-	public String add(HttpServletRequest request,Tmessage message){
-		Map<String, Object> res = getHashMap();
-		try {
-			messageService.create(message);
-			res.put("status", true);
-			res.put("info", "留言成功");
-		} catch (Exception e) {
-			res.put("status", false);
-			res.put("info", e.getMessage());
-		}
-		return JSON.toJSONString(res);
-	}
+	
 	@RequestMapping(value="getServices",method=RequestMethod.POST)
 	@ResponseBody
 	public String getService(HttpServletRequest request){

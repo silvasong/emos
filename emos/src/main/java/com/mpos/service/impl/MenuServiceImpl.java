@@ -15,6 +15,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mpos.commons.MposException;
 import com.mpos.dao.LanguageDao;
@@ -75,7 +76,7 @@ public class MenuServiceImpl implements MenuService {
 		criteria.add(Restrictions.eq("status", true));
 		if (searchJsonStr != null && !searchJsonStr.isEmpty()) {
 			List<Criterion> criterionList = new ArrayList<Criterion>();
-			JSONObject json = (JSONObject) JSONObject.parse(searchJsonStr);
+			JSONObject json = (JSONObject) JSON.parse(searchJsonStr);
 			Set<String> keys = json.keySet();
 			for (String key : keys) {
 				String value = json.getString(key);
@@ -199,7 +200,7 @@ public class MenuServiceImpl implements MenuService {
 		criteria.add(Restrictions.eq("status", true));
 		if(searchJsonStr!=null&&!searchJsonStr.isEmpty()){
 			List<Criterion> criterionList = new ArrayList<Criterion>();
-			JSONObject json = (JSONObject) JSONObject.parse(searchJsonStr);
+			JSONObject json = (JSONObject) JSON.parse(searchJsonStr);
 			Set<String> keys = json.keySet();
 			for(String key:keys){
 				String value = json.getString(key);
@@ -223,7 +224,7 @@ public class MenuServiceImpl implements MenuService {
 			daoModel =  menuDao.findPageList(criteria,rdtp.iDisplayStart,rdtp.iDisplayLength);
 		}
 		List<MenuModel> menuModels = new ArrayList<MenuModel>();
-		List<Tmenu> tas = (List<Tmenu>) daoModel.getList();
+		List<Tmenu> tas = daoModel.getList();
         if(tas!=null&&tas.size()>0){
         	for (Tmenu value : tas) {
         		MenuModel menu = new MenuModel();

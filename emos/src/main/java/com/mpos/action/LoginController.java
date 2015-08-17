@@ -72,7 +72,7 @@ public class LoginController extends BaseController {
 	public ModelAndView login(HttpServletRequest request,TadminUser user){
 		
 		
-		TadminUser tUser=(TadminUser)adminUserService.getAdminUserById(user.getAdminId());
+		TadminUser tUser=adminUserService.getAdminUserById(user.getAdminId());
 		ModelAndView mav=new ModelAndView();
 		Long time = (Long) request.getSession().getAttribute(SystemConstants.LOGIN_STATUS);
 		if(time != null && System.currentTimeMillis()-time<60000*Integer.parseInt(SystemConfig.Admin_Setting_Map.get(SystemConstants.LOGIN_ERROR_LOCK))){

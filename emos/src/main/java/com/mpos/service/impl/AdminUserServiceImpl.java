@@ -159,7 +159,7 @@ public List<TadminUser> getUserByStoreId(Integer storeId) {
 }
 
 public Boolean emailExist(String email){
-	TadminUser tt = (TadminUser) adminUserDao.findUnique("email", email);
+	TadminUser tt = adminUserDao.findUnique("email", email);
 	if(tt==null){
 		return false;
 	}
@@ -192,7 +192,7 @@ public void saveStoreUser(TadminUser adminUser) {
 
 public TadminUser getByCode(String code) {
 	// TODO Auto-generated method stub
-	return (TadminUser) adminUserDao.findUnique("code", code);
+	return adminUserDao.findUnique("code", code);
 }
 
 public TadminUser getUserByEmail(String email) {

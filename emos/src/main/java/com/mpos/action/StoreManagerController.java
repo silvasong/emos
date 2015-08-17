@@ -20,13 +20,12 @@ import com.mpos.commons.ConvertTools;
 import com.mpos.commons.MposException;
 import com.mpos.dto.Tservice;
 import com.mpos.dto.Tstore;
-import com.mpos.dto.Ttable;
 import com.mpos.model.DataTableParamter;
 import com.mpos.model.PagingData;
 import com.mpos.service.AdminUserService;
 import com.mpos.service.ServiceService;
 import com.mpos.service.StoreService;
-import com.mpos.service.TableService;
+
 
 /**
  * 店铺管理
@@ -40,8 +39,7 @@ public class StoreManagerController extends BaseController {
 	private StoreService storeService;
 	@Autowired
 	private ServiceService serviceService;
-	@Autowired
-	private TableService tableService;
+	
 	@Autowired
 	private AdminUserService adminUserService;
 	/**
@@ -49,10 +47,7 @@ public class StoreManagerController extends BaseController {
 	 */
 	private boolean status = true;
 	
-	public List<Ttable> tables = new ArrayList<Ttable>();
-	/**
-	 * 返回消息
-	 */
+	
 	private String info ="";
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView store(HttpServletRequest request){

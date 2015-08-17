@@ -16,6 +16,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mpos.commons.BaiduPushTool;
 import com.mpos.commons.BaiduPushTool.Notification;
@@ -23,11 +24,11 @@ import com.mpos.commons.ConvertTools;
 import com.mpos.commons.SecurityTools;
 import com.mpos.commons.SystemConfig;
 import com.mpos.dao.AdminUserDao;
-import com.mpos.dao.ProductReleaseDao;
+
 import com.mpos.dao.ServiceDao;
 import com.mpos.dao.StoreDao;
 import com.mpos.dto.ImageModel;
-import com.mpos.dto.TproductRelease;
+
 import com.mpos.dto.Tservice;
 import com.mpos.dto.Tstore;
 import com.mpos.model.DataTableParamter;
@@ -42,8 +43,7 @@ public class StoreServiceImpl implements StoreService {
 	private ServiceDao serviceDao;
 	@Autowired
 	private AdminUserDao adminUserDao;
-	@Autowired
-	private ProductReleaseDao productReleaseDao;
+	
 	public void save(Tstore store) {
 		// TODO Auto-generated method stub
 		Tservice service= serviceDao.get(store.getServiceId());
@@ -70,7 +70,7 @@ public class StoreServiceImpl implements StoreService {
 		criteria.add(Restrictions.eq("status", true));
 		if(searchJsonStr!=null&&!searchJsonStr.isEmpty()){
 			List<Criterion> criterionList = new ArrayList<Criterion>();
-			JSONObject json = (JSONObject) JSONObject.parse(searchJsonStr);
+			JSONObject json = (JSONObject) JSON.parse(searchJsonStr);
 			Set<String> keys = json.keySet();
 			for(String key:keys){
 				String value = json.getString(key);
@@ -117,7 +117,7 @@ public class StoreServiceImpl implements StoreService {
 		criteria.add(Restrictions.ne("storeId", 0));
 		criteria.addOrder(Order.desc("storeId"));
 		if(searchJsonStr!=null&&!searchJsonStr.isEmpty()){
-			JSONObject json = (JSONObject) JSONObject.parse(searchJsonStr);
+			JSONObject json = (JSONObject) JSON.parse(searchJsonStr);
 			Set<String> keys = json.keySet();
 			for(String key:keys){
 				String value = json.getString(key);
@@ -147,7 +147,7 @@ public class StoreServiceImpl implements StoreService {
 	public void update(String hql, Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		storeDao.update(hql, params);
-		updateVersion(Integer.valueOf(params.get("storeId").toString()));
+		/*updateVersion(Integer.valueOf(params.get("storeId").toString()));*/
 	}
 
 	public List<Tstore> select(String hql, Map<String, Object> params) {
@@ -217,7 +217,7 @@ public class StoreServiceImpl implements StoreService {
 
 	public void updateImage(ImageModel model) {
 		storeDao.updateImage(model);
-		updateVersion(model.getStoreId());
+		/*updateVersion(model.getStoreId());*/
 	}
 
 	public List<Tstore> loadAll() {
@@ -267,7 +267,7 @@ public class StoreServiceImpl implements StoreService {
 			}
 		}
 
-	public void updateVersion(Integer storeId){
+	/*public void updateVersion(Integer storeId){
 		Integer verId = productReleaseDao.getMaxId("id", storeId);
 		TproductRelease productrelease;
 		if (verId != null && verId != 0) {
@@ -290,7 +290,7 @@ public class StoreServiceImpl implements StoreService {
 			productrelease1.setStoreId(storeId);
 			productReleaseDao.create(productrelease1);
 		}
-	}
+	}*/
 	
 	public List<Object[]> getBySql(String sql, Map<String, Object> params) {
 		// TODO Auto-generated method stub

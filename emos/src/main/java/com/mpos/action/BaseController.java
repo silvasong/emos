@@ -27,8 +27,8 @@ import com.mpos.dto.TadminUser;
 import com.mpos.dto.Tcategory;
 import com.mpos.dto.Tmenu;
 import com.mpos.dto.Tproduct;
-import com.mpos.dto.TproductRelease;
-import com.mpos.dto.Ttable;
+
+
 import com.mpos.model.AddProductModel;
 import com.mpos.model.DataTableParamter;
 import com.mpos.model.LoginFailureModel;
@@ -257,11 +257,11 @@ public class BaseController {
 				((Tmenu)bean).setStoreId(storeId);
 			}else if(bean instanceof Tproduct){
 				((Tproduct)bean).setStoreId(storeId);
-			}else if(bean instanceof TproductRelease){
+			}/*else if(bean instanceof TproductRelease){
 				((TproductRelease)bean).setStoreId(storeId);
 			}else if(bean instanceof Ttable){
-				((Ttable)bean).setStoreId(storeId);
-			}else if(bean instanceof TadminUser){
+				((Ttable)bean).setStoreId(storeId);}*/
+			else if(bean instanceof TadminUser){
 				((TadminUser)bean).setStoreId(storeId);
 			}else if(bean instanceof AddProductModel){
 				((AddProductModel)bean).setStoreId(storeId);

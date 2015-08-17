@@ -51,7 +51,7 @@ import com.mpos.service.LanguageService;
 import com.mpos.service.LocalizedFieldService;
 import com.mpos.service.MenuService;
 import com.mpos.service.ProductAttributeService;
-import com.mpos.service.ProductReleaseService;
+
 
 @Controller
 @Scope("session")
@@ -81,8 +81,7 @@ private LanguageService languageService;
 @Autowired
 private GoodsAttributeService goodsAttributeService;
 
-@Autowired
-private ProductReleaseService productReleaseService;
+
 
 @Autowired
 private LocalizedFieldService localizedFieldService;

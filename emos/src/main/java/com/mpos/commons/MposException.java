@@ -68,10 +68,12 @@ public class MposException extends RuntimeException {
 		return this.errID;
 	}
 
+	@Override
 	public String getMessage() {
 		return this.msg;
 	}
 	
+	@Override
 	public String toString() {
 		return this.str;
 	}

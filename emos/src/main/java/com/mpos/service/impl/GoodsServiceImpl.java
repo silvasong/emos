@@ -29,13 +29,11 @@ import com.mpos.dao.GoodsAttributeDao;
 import com.mpos.dao.GoodsDao;
 import com.mpos.dao.GoodsImageDao;
 import com.mpos.dao.LocalizedFieldDao;
-import com.mpos.dao.ProductReleaseDao;
 import com.mpos.dto.TgoodsAttribute;
 import com.mpos.dto.TlocalizedField;
 import com.mpos.dto.Tmenu;
 import com.mpos.dto.Tproduct;
 import com.mpos.dto.TproductImage;
-import com.mpos.dto.TproductRelease;
 import com.mpos.model.AddProductModel;
 import com.mpos.model.DataTableParamter;
 import com.mpos.model.FileMeta;
@@ -54,8 +52,7 @@ public class GoodsServiceImpl implements GoodsService {
 	private LocalizedFieldDao localizedFieldDao;
 	@Autowired
 	private GoodsImageDao goodsImageDao;
-	@Autowired
-	private ProductReleaseDao productReleaseDao;
+	
 
 	public PagingData loadGoodsList(DataTableParamter rdtp) {
 		String searchJsonStr = rdtp.getsSearch();
@@ -110,43 +107,14 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 
 	public void deletegoodsByids(Integer[] ids, Integer storeId) {
-		Integer verId = productReleaseDao.getMaxintergerValue("id");
+		
 		if (ids != null && ids.length > 0) {
 			for (Integer id : ids) {
 				Tproduct goods = getTproductByid(id);
 				goods.setStatus(false);
 				goodsDao.update(goods);
 				Boolean isexist = true;
-				TproductRelease productrelease;
-				if (verId != 0) {
-					productrelease = productReleaseDao.get(verId);
-					if (productrelease != null && !productrelease.isIsPublic()) {
-						String productids = productrelease.getProducts();
-						String products[] = productids.split(",");
-						for (int j = 0; j < products.length; j++) {
-							if (products[j].equals(goods.getId().toString())) {
-								isexist = false;
-							}
-						}
-						if (isexist) {
-							productrelease.setProducts(productids + ","
-									+ goods.getId());
-							productReleaseDao.update(productrelease);
-						}
-					} else {
-						TproductRelease newproductrelease = new TproductRelease();
-						newproductrelease.setProducts(goods.getId().toString());
-						newproductrelease.setIsPublic(false);
-						newproductrelease.setStoreId(storeId);
-						productReleaseDao.create(newproductrelease);
-					}
-				} else {
-					TproductRelease productrelease1 = new TproductRelease();
-					productrelease1.setProducts(goods.getId().toString());
-					productrelease1.setIsPublic(false);
-					productrelease1.setStoreId(storeId);
-					productReleaseDao.create(productrelease1);
-				}
+				
 
 			}
 		}
@@ -310,34 +278,7 @@ public class GoodsServiceImpl implements GoodsService {
 		}
 		filesMap.clear();
 		// add productReleaseService
-		Integer verId = productReleaseDao.getMaxId("id", model.getStoreId());
-		TproductRelease productrelease;
-		if (verId != null && verId != 0) {
-			productrelease = productReleaseDao.get(verId);
-			if (productrelease != null && !productrelease.isIsPublic()) {
-				String ids = productrelease.getProducts();
-				String products[] = ids.split(",");
-				for (int j = 0; j < products.length; j++) {
-					if (products[j].equals(product.getId().toString())) {
-						return;
-					}
-				}
-				productrelease.setProducts(ids + "," + product.getId());
-				productReleaseDao.update(productrelease);
-			} else {
-				TproductRelease newproductrelease = new TproductRelease();
-				newproductrelease.setProducts(product.getId().toString());
-				newproductrelease.setStoreId(model.getStoreId());
-				newproductrelease.setIsPublic(false);
-				productReleaseDao.create(newproductrelease);
-			}
-		} else {
-			TproductRelease productrelease1 = new TproductRelease();
-			productrelease1.setProducts(product.getId().toString());
-			productrelease1.setIsPublic(false);
-			productrelease1.setStoreId(model.getStoreId());
-			productReleaseDao.create(productrelease1);
-		}
+		
 
 	}
 
@@ -467,39 +408,11 @@ public class GoodsServiceImpl implements GoodsService {
 			goodsImageDao.saveOrUpdate(productImage);
 		}
 		filesMap.clear();
-		// add productReleaseService
-		Integer verId = productReleaseDao.getMaxId("id", model.getStoreId());
-		TproductRelease productrelease;
-		if (verId != null && verId != 0) {
-			productrelease = productReleaseDao.get(verId);
-			if (productrelease != null && !productrelease.isIsPublic()) {
-				String ids = productrelease.getProducts();
-				String products[] = ids.split(",");
-				for (int j = 0; j < products.length; j++) {
-					if (products[j].equals(product.getId().toString())) {
-						return;
-					}
-				}
-				productrelease.setProducts(ids + "," + product.getId());
-				productReleaseDao.update(productrelease);
-			} else {
-				TproductRelease newproductrelease = new TproductRelease();
-				newproductrelease.setProducts(product.getId().toString());
-				newproductrelease.setIsPublic(false);
-				newproductrelease.setStoreId(model.getStoreId());
-				productReleaseDao.create(newproductrelease);
-			}
-		} else {
-			TproductRelease productrelease1 = new TproductRelease();
-			productrelease1.setProducts(product.getId().toString());
-			productrelease1.setIsPublic(false);
-			productrelease1.setStoreId(model.getStoreId());
-			productReleaseDao.create(productrelease1);
-		}
+		
 	}
 
 
-	private void publish(Integer storeId, String productIds, boolean ok) {
+	/*private void publish(Integer storeId, String productIds, boolean ok) {
 		Integer verId = productReleaseDao.getMaxId("id", storeId);
 		TproductRelease productrelease;
 		if (verId != null && verId != 0) {
@@ -548,7 +461,7 @@ public class GoodsServiceImpl implements GoodsService {
 			productrelease1.setStoreId(storeId);
 			productReleaseDao.create(productrelease1);
 		}
-	}
+	}*/
 
 	public void putGoods(String productIds, Integer storeId) {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -557,8 +470,8 @@ public class GoodsServiceImpl implements GoodsService {
 		params.put("ids", ids);
 		params.put("isPut", true);
 		String hql = "update Tproduct set isPut=:isPut where storeId=:storeId and id in(:ids)";
-		productReleaseDao.update(hql, params);
-		publish(storeId,productIds,true);
+		goodsDao.update(hql, params);
+		
 	}
 
 	public void outGoods(String productIds, Integer storeId) {
@@ -568,8 +481,8 @@ public class GoodsServiceImpl implements GoodsService {
 		params.put("ids", ids);
 		params.put("isPut", false);
 		String hql = "update Tproduct set isPut=:isPut where storeId=:storeId and id in(:ids)";
-		productReleaseDao.update(hql, params);
-		publish(storeId,productIds,false);
+		goodsDao.update(hql, params);
+		
 	}
 	
 	public static void main(String[] args) {
@@ -598,10 +511,10 @@ public class GoodsServiceImpl implements GoodsService {
 				pro.setOldPrice((float)(15+i));
 				pro.setPrice(13+i);
 				pro.setProductName(name+i);
-				pro.setShortDescr(name+"µÄÃèÊö"+i);
+				pro.setShortDescr(name+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+i);
 				pro.setSku(10);
 				pro.setSort(i);
-				pro.setUnitName("·Ý");
+				pro.setUnitName("ï¿½ï¿½");
 				pro.setTmenu(new Tmenu(menuId));
 				pro.setStatus(true);
 				pro.setStoreId(storeId);
@@ -631,11 +544,7 @@ public class GoodsServiceImpl implements GoodsService {
 			for (TproductImage image : images) {
 				goodsImageDao.create(image);
 			}
-			TproductRelease productrelease1 = new TproductRelease();
-			productrelease1.setProducts(ids);
-			productrelease1.setIsPublic(false);
-			productrelease1.setStoreId(storeId);
-			productReleaseDao.create(productrelease1);
+			
 	}
 
 }

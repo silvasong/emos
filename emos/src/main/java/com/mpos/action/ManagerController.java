@@ -21,7 +21,7 @@ import com.mpos.commons.MposException;
 import com.mpos.commons.SecurityTools;
 import com.mpos.dto.TadminRole;
 import com.mpos.dto.TadminUser;
-import com.mpos.dto.Ttable;
+
 import com.mpos.model.DataTableParamter;
 import com.mpos.model.PagingData;
 import com.mpos.service.AdminInfoService;
@@ -30,7 +30,7 @@ import com.mpos.service.AdminRoleService;
 import com.mpos.service.AdminUserService;
 import com.mpos.service.ServiceService;
 import com.mpos.service.StoreService;
-import com.mpos.service.TableService;
+
 
 @Controller
 @RequestMapping(value="manager")
@@ -38,7 +38,7 @@ public class ManagerController extends BaseController {
 	@SuppressWarnings("unused")
 	private Logger logger = Logger.getLogger(ManagerController.class);	
 	
-	public List<Ttable> tables = new ArrayList<Ttable>();
+	
 	
 	@Resource
 	private AdminUserService adminUserService;
@@ -52,8 +52,7 @@ public class ManagerController extends BaseController {
 	private StoreService storeService;
 	@Autowired
 	private ServiceService serviceService;
-	@Autowired
-	private TableService tableService;
+	
 	@Autowired
 	private AdminInfoService adminInfoService;
 	

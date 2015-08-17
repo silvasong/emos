@@ -163,29 +163,7 @@
 						</a>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-					<div class="dashboard-stat green-haze">
-						<div class="visual">
-							<i class="fa fa-th-list"></i>
-						</div>
-						<div class="details">
-							<div class="desc">
-							当月订购统计
-							</div>
-							<c:if test="${not empty order}">
-								<div class="desc">
-								 订购笔数：${order[0]}
-							</div>
-							<div class="desc">
-								 交易金额：${order[1]}
-							</div>
-						</c:if>
-						</div>
-						<a class="more" href="<c:url value="/"/>trade/">
-						<s:message code="home.View"/> <i class="m-icon-swapright m-icon-white"></i>
-						</a>
-					</div>
-				</div>
+				
 			</div>
 			<!-- END DASHBOARD STATS -->
 			<div class="clearfix">

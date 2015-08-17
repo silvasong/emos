@@ -77,13 +77,13 @@ public class ExcelTools {
                             continue;
                         }
                         if (cell != null) {
-                            cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+                            cell.setCellType(Cell.CELL_TYPE_STRING);
                             String cellValue = "";
                             int cellValueType = cell.getCellType();
-                            if (cellValueType == cell.CELL_TYPE_STRING) {
+                            if (cellValueType == Cell.CELL_TYPE_STRING) {
                                 cellValue = cell.getStringCellValue();
                             }
-                            if (cellValueType == cell.CELL_TYPE_NUMERIC) {
+                            if (cellValueType == Cell.CELL_TYPE_NUMERIC) {
                                 //Double number = cell.getNumericCellValue();
                                  
                              
@@ -132,13 +132,13 @@ public class ExcelTools {
                             continue;
                         }
                         if (cell != null) {
-                            cell.setCellType(XSSFCell.CELL_TYPE_STRING);
+                            cell.setCellType(Cell.CELL_TYPE_STRING);
                             String cellValue = "";
                             int cellValueType = cell.getCellType();
-                            if (cellValueType == cell.CELL_TYPE_STRING) {
+                            if (cellValueType == Cell.CELL_TYPE_STRING) {
                                 cellValue = cell.getStringCellValue();
                             }
-                            if (cellValueType == cell.CELL_TYPE_NUMERIC) {
+                            if (cellValueType == Cell.CELL_TYPE_NUMERIC) {
 //                               / Double number = cell.getNumericCellValue();
                                 cellValue = cell.getNumericCellValue() + "";
                             }

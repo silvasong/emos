@@ -42,7 +42,7 @@ import com.mpos.commons.SystemConstants;
 import com.mpos.dto.TattributeValue;
 import com.mpos.dto.TcategoryAttribute;
 import com.mpos.dto.Tcommodity;
-import com.mpos.dto.Tdevice;
+
 import com.mpos.dto.TgoodsAttribute;
 import com.mpos.dto.Tlanguage;
 import com.mpos.dto.TlocalizedField;
@@ -51,10 +51,10 @@ import com.mpos.dto.Torder;
 import com.mpos.dto.TorderItem;
 import com.mpos.dto.TproductAttribute;
 import com.mpos.dto.TproductImage;
-import com.mpos.dto.TproductRelease;
+
 import com.mpos.dto.Tpromotion;
 import com.mpos.dto.Tstore;
-import com.mpos.dto.Ttable;
+
 import com.mpos.model.AttributeModel;
 import com.mpos.model.CallWaiterInfo;
 import com.mpos.model.ProductModel;
@@ -62,7 +62,7 @@ import com.mpos.model.ValueModel;
 import com.mpos.service.AttributeValueService;
 import com.mpos.service.CategoryAttributeService;
 import com.mpos.service.CommodityService;
-import com.mpos.service.DeviceService;
+
 import com.mpos.service.GoodsImageService;
 import com.mpos.service.GoodsService;
 import com.mpos.service.LanguageService;
@@ -71,10 +71,10 @@ import com.mpos.service.MenuService;
 import com.mpos.service.OrderItemService;
 import com.mpos.service.OrderService;
 import com.mpos.service.ProductAttributeService;
-import com.mpos.service.ProductReleaseService;
+
 import com.mpos.service.PromotionService;
 import com.mpos.service.StoreService;
-import com.mpos.service.TableService;
+
 
 @Controller
 @RequestMapping("/api")
@@ -111,10 +111,8 @@ public class MobileAPI {
 
 	public static final int SPEC_TYPE = 0;
 	public static final int ORDER_TYPE = 1;
-	@Autowired
-	private TableService tableService;
-	@Autowired
-	private DeviceService deviceService;
+	
+	
 	@Autowired
 	private GoodsService goodsService;
 	@Autowired
@@ -135,8 +133,7 @@ public class MobileAPI {
 	private PromotionService promotionService;
 	@Autowired
 	private LocalizedFieldService localizedFieldService;
-	@Autowired
-	private ProductReleaseService productReleaseService;
+	
 	@Autowired
 	private AttributeValueService attributeValueService;
 	@Autowired
@@ -213,8 +210,7 @@ public class MobileAPI {
 			dataJson.put("backgroundImage", backPath);
 			//店铺名称
 			dataJson.put("storeName", store.getStoreName());
-			//店铺桌号
-			dataJson.put("tables", loadTables(storeId));
+			
 			//多语言设置
 			dataJson.put("languages", languages);
 			//客户端打印类型
@@ -229,76 +225,6 @@ public class MobileAPI {
 			respJson.put("info", e.getMessage());
 			return JSON.toJSONString(respJson);
 		}
-	}
-	/**
-	 * bing push set
-	 * @param response
-	 * @param apiKey
-	 * @param jsonStr   
-	 * @return
-	 */
-	@RequestMapping(value = "bingPushSet", method = RequestMethod.POST)
-	@ResponseBody
-	public String bingPushSet(HttpServletResponse response, @RequestHeader("Authorization") String apiKey, @RequestBody String jsonStr){
-		Integer storeId = SystemConfig.STORE_TAKEN_MAP.get(apiKey);
-		JSONObject jsonObj = null;
-		JSONObject respJson = new JSONObject();
-		if (storeId == null) {
-			respJson.put("status", false);
-			respJson.put("code", CODE);
-			respJson.put("info", "Error API token.");
-			return JSON.toJSONString(respJson);
-		}
-		if (jsonStr == null || jsonStr.isEmpty()) {
-			respJson.put("status", false);
-			respJson.put("info", "The request parameter is required.");
-			return JSON.toJSONString(respJson);
-		}
-		try {
-			Tdevice device = new Tdevice();
-			jsonObj = (JSONObject) JSON.parse(jsonStr);
-			Integer deviceType = jsonObj.getInteger("deviceType");
-			String tableName = jsonObj.getString("tableName");
-			String channelId = jsonObj.getString("channelId");
-			if (channelId.isEmpty()||deviceType==null) {
-				respJson.put("status", false);
-				respJson.put("info", "The request parameter is required.");
-				return JSON.toJSONString(respJson);
-			}
-			device.setChannelId(channelId);
-			device.setDeviceType(deviceType);
-			device.setStoreId(storeId);
-			device.setTableName(tableName);
-			device.setCreateTime(System.currentTimeMillis());
-			device.setLastReportTime(System.currentTimeMillis());
-			device.setLastSyncTime(System.currentTimeMillis());
-			device.setStatus(true);
-			Integer count = deviceService.getCountByStoreIdAndDeviceType(storeId, deviceType);
-			//Integer cou = deviceService.getCount(deviceType, channelId);
-			if(count==0){
-				BaiduPushTool.createTag(deviceType, storeId+"");
-			}
-			String delete  = "delete from Tdevice where deviceType=:deviceType and channelId=:channelId";
-			Map<String, Object> params = new HashMap<String, Object>();
-			params.put("deviceType", deviceType);
-			params.put("channelId", channelId);
-			deviceService.delete(delete,params);
-			Tdevice de = deviceService.get(deviceType, channelId);
-			if(de!=null){
-				BaiduPushTool.deleteDevicesFromTag(new String[]{channelId},  de.getStoreId()+"", deviceType);
-			}
-			Boolean success = BaiduPushTool.addDevicesToTag(new String[]{channelId}, storeId+"", deviceType);
-				if(success){
-					respJson.put("status", true);
-					respJson.put("info", "OK");
-					deviceService.create(device);
-					return JSON.toJSONString(respJson);
-				}
-		} catch (Exception e) {
-			respJson.put("status", false);
-			respJson.put("info", e.getMessage());
-		}
-		return JSON.toJSONString(respJson);
 	}
 
 	/**
@@ -417,65 +343,7 @@ public class MobileAPI {
 		}
 	}
 
-	/**
-	 * Query the latest products change version
-	 * 
-	 * @param response
-	 * @param apiKey
-	 * @param jsonStr
-	 * @return
-	 */
-	@RequestMapping(value = "getProductsVer", method = RequestMethod.POST)
-	@ResponseBody
-	public String getProductsVer(HttpServletResponse response, @RequestHeader("Authorization") String apiKey, @RequestBody String jsonStr) {
-		Integer storeId = SystemConfig.STORE_TAKEN_MAP.get(apiKey);
-		JSONObject respJson = new JSONObject();
-		if (storeId == null) {
-			respJson.put("code", CODE);
-			respJson.put("status", false);
-			respJson.put("info", "Error API token.");
-			return JSON.toJSONString(respJson);
-		}
-
-		if (jsonStr == null || jsonStr.isEmpty()) {
-			respJson.put("status", false);
-			respJson.put("info", "The request parameter is required.");
-			return JSON.toJSONString(respJson);
-		}
-
-		try {
-
-			JSONObject jsonObj = (JSONObject) JSON.parse(jsonStr);
-			int verid = jsonObj.getIntValue("verId");
-			int latestVerID = 0;
-			List<TproductRelease> productReleaseList = productReleaseService.getUpdatedRelease(verid,storeId);
-			JSONArray productsJsonArr = new JSONArray();
-			for (TproductRelease productRelease : productReleaseList) {
-				if (productRelease.getId() > latestVerID) {
-					latestVerID = productRelease.getId();
-				}
-				String productStr = productRelease.getProducts();
-				String[] productArr = productStr.split(",");
-				for (String str : productArr) {
-					int productId = Integer.parseInt(str);
-					if (!productsJsonArr.contains(productId)) {
-						productsJsonArr.add(productId);
-					}
-				}
-			}
-			JSONObject dataJson = new JSONObject();
-				dataJson.put("id", latestVerID);
-				dataJson.put("products", productsJsonArr);
-				respJson.put("status", true);
-				respJson.put("info", "OK");
-				respJson.put("data", dataJson);
-			return JSON.toJSONString(respJson);
-		} catch (MposException e) {
-			respJson.put("status", false);
-			respJson.put("info", e.getMessage());
-			return JSON.toJSONString(respJson);
-		}
-	}
+	
 
 	/**
 	 * 
@@ -761,7 +629,7 @@ public class MobileAPI {
 		return JSON.toJSONString(respJson);
 	}
 
-	@RequestMapping(value = "deviceStatus", method = RequestMethod.POST)
+	/*@RequestMapping(value = "deviceStatus", method = RequestMethod.POST)
 	@ResponseBody
 	public String updateDeviceStatus(HttpServletResponse response, @RequestHeader("Authorization") String apiKey, @RequestBody String jsonStr) {
 		// 获取缓存apiToken
@@ -833,7 +701,7 @@ public class MobileAPI {
 			respJson.put("info", e.getMessage());
 			return JSON.toJSONString(respJson);
 		}
-	}
+	}*/
 	/**
 	 * 订单同步
 	 * @param request
@@ -1327,19 +1195,5 @@ public class MobileAPI {
 		return oldPrice;
 	}
 
-	private String[] loadTables(Integer storeId) {
-		Map<String,Object> params = new HashMap<String, Object>();
-		params.put("status", true);
-		params.put("storeId", storeId);
-		String query = "from Ttable where status=:status and storeId=:storeId";
-		List<Ttable> tables = tableService.select(query, params);
-		String[] tt = null;
-		if (tables != null && tables.size() > 0) {
-			tt = new String[tables.size()];
-			for (int i = 0; i < tables.size(); i++) {
-				tt[i] = tables.get(i).getTableName();
-			}
-		}
-		return tt;
-	}
+	
 }

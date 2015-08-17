@@ -16,17 +16,11 @@
 		<property name="useCodeAsDefaultMessage" value="true" />
 	</bean>
 	
-	<bean id="messageService" class="com.mpos.service.impl.MessageServiceImpl" autowire="byName"/>
-	
 	
 	
 	<bean id="serviceService" class="com.mpos.service.impl.ServiceServiceImpl" autowire="byName"/>
 	
 	<bean id="storeService" class="com.mpos.service.impl.StoreServiceImpl" autowire="byName"/>
-	
-	<bean id="tableService" class="com.mpos.service.impl.TableServiceImpl" autowire="byName"/>
-	
-	<bean id="deviceService" class="com.mpos.service.impl.DeviceServiceImpl" autowire="byName"/>
 	
 	<bean id="commodityService" class="com.mpos.service.impl.CommodityServiceImpl" autowire="byName"/>
 	
@@ -60,8 +54,6 @@
 	 <bean id="orderService" class="com.mpos.service.impl.OrderServiceImpl" autowire="byName"/>
 	 
 	 <bean id="orderItemService" class="com.mpos.service.impl.OrderItemServiceImpl" autowire="byName"/>
-	 
-	 <bean id="productReleaseService" class="com.mpos.service.impl.ProductReleaseServiceImpl" autowire="byName"/>
 	 
 	 <bean id="CategoryAttributeService" class="com.mpos.service.impl.CategoryAttributeServiceImpl" autowire="byName"/>
 	 
