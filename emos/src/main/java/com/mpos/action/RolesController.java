@@ -134,8 +134,10 @@ public class RolesController extends BaseController {
 			}
 			adminRoleRights.setRoleRights(bitVal);
 			adminRoleRightsService.saveAdminRoleRights(adminRoleRights);
-			setSessionRights(request,adminRoleRights.getRoleRights());
-			respJson.put("status", true);
+			if(adminRoleRights.getRoleId()==1){
+				setSessionRights(request,adminRoleRights.getRoleRights());
+			}
+            respJson.put("status", true);
 			respJson.put("info", getMessage(request,"operate.success"));
 		}
 		catch(MposException be){

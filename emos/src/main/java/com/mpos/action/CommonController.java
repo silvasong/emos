@@ -101,11 +101,7 @@ public class CommonController extends BaseController {
 		return mav;
 	}
 	
-	/**
-	 * 添加验证tableName
-	 * @param tableName 桌号
-	 * @return
-	 */
+	
 	@RequestMapping(value="/checkEmail",method=RequestMethod.POST)
 	@ResponseBody
 	public String checkTableName(String email,HttpServletRequest request){

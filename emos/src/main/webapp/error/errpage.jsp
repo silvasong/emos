@@ -61,13 +61,13 @@
 						<div class="portlet box yellow">
 							<div class="portlet-title">
 								<div class="caption">
-									<i class="fa fa-bolt"></i>Error messages
+									<i class="fa fa-bolt"></i>错误信息
 								</div>								
 							</div>							
 							<div class="portlet-body">																
 								<div class="alert alert-block alert-danger fade in">
-									<h2 class="alert-heading">Error!</h2>
-									<h3>You have not rights to access this function.</h3>
+									<h2 class="alert-heading">错误!</h2>
+									<h3>你没有权限访问.</h3>
 								</div>
 							</div>
 						</div>						

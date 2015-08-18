@@ -58,7 +58,11 @@ public class HomeController extends BaseController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest request){
-		ModelAndView mav=new ModelAndView();	
+		
+		ModelAndView mav=new ModelAndView();
+        if(getSessionUser(request).getAdminRole().getRoleId()!=1){
+        	mav.setViewName("redirect:/home/storeHome");
+		}else{
 		String sql = "select count(*),role.role_name from emos.emos_admin as admin left join emos.emos_admin_role as role on admin.role_id=role.role_id group by role.role_name";
 		List<Object[]> qres = orderService.getList(sql, null);
 		mav.addObject("userRole", qres);
@@ -76,12 +80,8 @@ public class HomeController extends BaseController {
 		Map<String, Object> params = getHashMap();
 		params.put("startTime", ConvertTools.getFirstDay());
 		params.put("endTime", ConvertTools.getLastDay());
-		
-		/*String orderSql="SELECT count(*),sum(serviceOrder.price) FROM emos.emos_service_order as serviceOrder where serviceOrder.status=:status and serviceOrder.create_time between :startTime and :endTime";
-		Object[] order = (Object[]) orderService.getBySql(orderSql,params);
-		mav.addObject("order", order);*/
-		
 		mav.setViewName("home/home");
+		}
 		return mav;
 	}
 	private void loadData(List<Object[]> data) {
