@@ -206,7 +206,7 @@
 								</div>
 								<!--End Multi-language Form   -->
 							
-								<h3 class="form-section"><s:message code="product.basic.info"/>&nbsp;&nbsp;&nbsp;&nbsp;<small class="font-red-sunglo"><s:message code="product.tip"/></small></h3>
+								<h3 class="form-section"><s:message code="product.basic.info"/>&nbsp;&nbsp;&nbsp;&nbsp;</h3>
 								<div class="row">
 									<div class="col-md-6">										
 										<div class="form-group">

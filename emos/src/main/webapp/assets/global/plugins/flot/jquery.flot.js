@@ -1530,7 +1530,7 @@ Licensed under the MIT license.
                 axis, i;
 
             // check stuff from the plot (FIXME: this should just read
-            // a value from the series, otherwise it's impossible to
+            // a value from the series, otherwise it's iemossible to
             // customize)
             if (minMargin == null) {
                 minMargin = 0;

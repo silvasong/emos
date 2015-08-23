@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015-1-12 10:32:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.mpos.dto.Tservice" table="emos_service" catalog="emos" optimistic-lock="version">
+    <class name="com.emos.dto.Tservice" table="emos_service" catalog="emos" optimistic-lock="version">
         <id name="serviceId" type="java.lang.Integer">
             <column name="service_id" />
             <generator class="identity" />

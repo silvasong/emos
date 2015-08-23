@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="com.mpos.dto" default-lazy="false">
+<hibernate-mapping package="com.emos.dto" default-lazy="false">
 	<class name="TadminRole" table="emos_admin_role" catalog="emos">
 		<id name="roleId" type="java.lang.Integer">
 			<column name="role_id" length="11" />
@@ -21,6 +21,6 @@
 			<column name="status" not-null="true" default="0"/>
 		</property>
 		
-		<one-to-one name="adminRoleRights" class="com.mpos.dto.TadminRoleRights" />
+		<one-to-one name="adminRoleRights" class="com.emos.dto.TadminRoleRights" />
 	</class>
 </hibernate-mapping>

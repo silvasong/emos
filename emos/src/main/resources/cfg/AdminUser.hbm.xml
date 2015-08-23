@@ -3,7 +3,7 @@
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-lazy="false">
-	<class name="com.mpos.dto.TadminUser" table="emos_admin" catalog="emos"> 
+	<class name="com.emos.dto.TadminUser" table="emos_admin" catalog="emos"> 
 		<id name="adminId" type="string">
 			<column name="admin_id" />
 			<generator class="assigned"></generator>
@@ -15,7 +15,7 @@
             <column name="password" length="50" not-null="true"/>
         </property>
         
-        <many-to-one name="adminRole" column="role_id" class="com.mpos.dto.TadminRole" unique="true" not-null="true"/>                
+        <many-to-one name="adminRole" column="role_id" class="com.emos.dto.TadminRole" unique="true" not-null="true"/>                
         
         <property name="status" type="java.lang.Boolean">
             <column name="status"/>

@@ -72,7 +72,7 @@ $(document).ready( function () {
 		// php
 		var phpTab = $('ul.tabs li').eq(4).css('display', 'none');
 
-		$(document).on( 'init.dt.demoSSP', function ( e, settings ) {
+		$(document).on( 'init.dt.demosSP', function ( e, settings ) {
 			if ( settings.oFeatures.bServerSide ) {
 				if ( $.isFunction( settings.ajax ) ) {
 					return;

@@ -84,7 +84,7 @@
 	<property name="sessionFactory" ref="sessionFactory"/>		
 </bean>   
 <aop:config>
-	<aop:pointcut expression="execution(* com.mpos.service.*Service.*(..))" id="serviceMethod"/>
+	<aop:pointcut expression="execution(* com.emos.service.*Service.*(..))" id="serviceMethod"/>
 	<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
 </aop:config>  
 
@@ -102,7 +102,7 @@
 </tx:advice>
 
 <!-- 对Service层抛出的异常进行统一处理 -->
-<bean id="exceptionManagerAdvice" class="com.mpos.core.ExceptionManagerAdvice"/>
+<bean id="exceptionManagerAdvice" class="com.emos.core.ExceptionManagerAdvice"/>
 <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
     <property name="beanNames">
       <value>*Service</value>

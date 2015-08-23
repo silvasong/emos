@@ -3704,7 +3704,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 		(o.cursorAt && this._adjustOffsetFromHelper(o.cursorAt));
 
 		//Cache the former DOM position
-		this.domPosition = { prev: this.currentItem.prev()[0], parent: this.currentItem.parent()[0] };
+		this.doemosition = { prev: this.currentItem.prev()[0], parent: this.currentItem.parent()[0] };
 
 		//If the helper is not the original, hide the original so it's not playing any role during the drag, won't cause anything bad this way
 		if(this.helper[0] !== this.currentItem[0]) {
@@ -3976,10 +3976,10 @@ $.widget("ui.sortable", $.ui.mouse, {
 				_noFinalSort: null
 			});
 
-			if(this.domPosition.prev) {
-				$(this.domPosition.prev).after(this.currentItem);
+			if(this.doemosition.prev) {
+				$(this.doemosition.prev).after(this.currentItem);
 			} else {
-				$(this.domPosition.parent).prepend(this.currentItem);
+				$(this.doemosition.parent).prepend(this.currentItem);
 			}
 		}
 
@@ -4672,7 +4672,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 		if(this.fromOutside && !noPropagation) {
 			delayedTriggers.push(function(event) { this._trigger("receive", event, this._uiHash(this.fromOutside)); });
 		}
-		if((this.fromOutside || this.domPosition.prev !== this.currentItem.prev().not(".ui-sortable-helper")[0] || this.domPosition.parent !== this.currentItem.parent()[0]) && !noPropagation) {
+		if((this.fromOutside || this.doemosition.prev !== this.currentItem.prev().not(".ui-sortable-helper")[0] || this.doemosition.parent !== this.currentItem.parent()[0]) && !noPropagation) {
 			delayedTriggers.push(function(event) { this._trigger("update", event, this._uiHash()); }); //Trigger update callback if the DOM position has changed
 		}
 

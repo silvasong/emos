@@ -95,7 +95,7 @@ div.dataTables_scrollFoot table {
 }
 
 /* Frustratingly the border-collapse:collapse used by Bootstrap makes the column
-   width calculations when using scrolling impossible to align columns. We have
+   width calculations when using scrolling iemossible to align columns. We have
    to use separate
  */
 table.table-bordered.dataTable {

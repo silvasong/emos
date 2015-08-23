@@ -3,12 +3,12 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Dec 18, 2014 11:18:20 AM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="com.mpos.dto.TproductAttribute" table="emos_product_attribute" catalog="emos">
-        <composite-id name="id" class="com.mpos.dto.TproductAttributeId">
-            <key-many-to-one name="categoryAttribute" class="com.mpos.dto.TcategoryAttribute">
+    <class name="com.emos.dto.TproductAttribute" table="emos_product_attribute" catalog="emos">
+        <composite-id name="id" class="com.emos.dto.TproductAttributeId">
+            <key-many-to-one name="categoryAttribute" class="com.emos.dto.TcategoryAttribute">
             <column name="attribute_id" />
             </key-many-to-one>
-            <key-many-to-one name="product" class="com.mpos.dto.Tproduct">
+            <key-many-to-one name="product" class="com.emos.dto.Tproduct">
             <column name="product_id" />
             </key-many-to-one>
         </composite-id>

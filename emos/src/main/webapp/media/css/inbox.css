@@ -64,7 +64,7 @@ Inbox Page
   text-decoration: none;
 }
 
-.inbox .inbox-nav li.compose-btn a {
+.inbox .inbox-nav li.coemose-btn a {
   color: #fff;
   text-shadow: none;
   text-align: center;
@@ -72,8 +72,8 @@ Inbox Page
   background: #35aa47;
 }
 
-.inbox .inbox-nav li.compose-btn i,
-.inbox .inbox-nav li.compose-btn:hover i {
+.inbox .inbox-nav li.coemose-btn i,
+.inbox .inbox-nav li.coemose-btn:hover i {
   top: 1px;
   color: #fff;
   font-size: 15px;
@@ -81,7 +81,7 @@ Inbox Page
   background: none !important;
 }
 
-.inbox .inbox-nav li.compose-btn a:hover {
+.inbox .inbox-nav li.coemose-btn a:hover {
   background-color: #1d943b !important;
 }
 
@@ -330,26 +330,26 @@ Inbox Page
 }
 
 
-/*Inbox Compose*/
-.inbox-compose {
+/*Inbox Coemose*/
+.inbox-coemose {
   margin-top: 1px;
   border: solid 1px #eee;
 }
 
-.inbox-compose-btn {
+.inbox-coemose-btn {
   padding: 8px 4px;
   background: #f0f6fa;
 }
 
-.inbox-compose-attachment {
+.inbox-coemose-attachment {
   padding: 8px 8px;
 }
 
-.inbox-compose-attachment .btn {
+.inbox-coemose-attachment .btn {
   padding: 4px 10px;
 }
 
-.inbox-compose-btn button {
+.inbox-coemose-btn button {
   color: #fff;
   font-size: 14px;
   margin-left: 4px;
@@ -357,48 +357,48 @@ Inbox Page
   background: #c0cfdd;
 }
 
-.inbox-compose-btn button:hover {
+.inbox-coemose-btn button:hover {
   color: #fff;
   background: #4d90fe;
 }
 
-.inbox-compose-btn button i {
+.inbox-coemose-btn button i {
   margin-right: 3px;
 }
 
-.inbox-compose .inbox-control-group {
+.inbox-coemose .inbox-control-group {
   margin-bottom: 0;
   position: relative;
   border-bottom: solid 1px #eee;
 }
 
-.inbox-compose .controls {
+.inbox-coemose .controls {
   margin-left: 85px;
 }
 
-.inbox-compose .inbox-control-group > label {
+.inbox-coemose .inbox-control-group > label {
   width: 80px;
   float: left;
   color: #979797;
   text-align: right;
 }
 
-.inbox-compose .controls > input {
+.inbox-coemose .controls > input {
   border: none !important;
 }
-.inbox-compose .controls-to {
+.inbox-coemose .controls-to {
   padding-right: 55px;
 }
 
-.inbox-compose .controls-cc {
+.inbox-coemose .controls-cc {
   padding-right: 15px;
 }
 
-.inbox-compose .controls-bcc {
+.inbox-coemose .controls-bcc {
   padding-right: 15px;
 }
 
-.inbox-compose .tag {
+.inbox-coemose .tag {
   font-size: 12px;
   font-weight: 300 !important;
   margin-top: 6px;
@@ -410,14 +410,14 @@ Inbox Page
   padding: 3px !important;
 }
 
-.inbox-compose .tag .close {
+.inbox-coemose .tag .close {
   margin-top: -2px;
   display: inline-block !important;
   float: none !important;
 
 }
 
-.inbox-compose .tags {
+.inbox-coemose .tags {
   border: none !important;
   font-size: 13px;
   padding: 0px;
@@ -426,15 +426,15 @@ Inbox Page
   box-shadow: none !important;
 }
 
-.inbox-compose .tags-hover {
+.inbox-coemose .tags-hover {
   border: 1px solid #ddd;
   border: none !important;
   box-shadow: none !important;
   background: none !important;
 }
 
-.inbox-compose .tags input[type="text"],
-.inbox-compose .tags input[type="text"]:focus {
+.inbox-coemose .tags input[type="text"],
+.inbox-coemose .tags input[type="text"]:focus {
   display: inline-block !important;
   border: none !important;
   font-size: 14px !important;
@@ -448,13 +448,13 @@ Inbox Page
   box-shadow: none;
 }
 
-.inbox-compose .inbox-control-group a.close {
+.inbox-coemose .inbox-control-group a.close {
   top: 13px;
   right: 10px;
   position: absolute;
 }
 
-.inbox-compose .mail-to .inbox-cc-bcc {
+.inbox-coemose .mail-to .inbox-cc-bcc {
   display: inline-block;
   top: 7px;
   right: 10px;
@@ -464,22 +464,22 @@ Inbox Page
   position: absolute;
 }
 
-.inbox-compose .mail-to .inbox-bcc {
+.inbox-coemose .mail-to .inbox-bcc {
   margin-left: 5px;
 }
 
-.inbox-compose .mail-to inbox-cc:hover,
-.inbox-compose .mail-to inbox-bcc:hover {
+.inbox-coemose .mail-to inbox-cc:hover,
+.inbox-coemose .mail-to inbox-bcc:hover {
   color: #777;
 }
 
-.inbox-compose .wysihtml5 {
+.inbox-coemose .wysihtml5 {
   padding: 0px !important;
   margin: 0px !important;
   border: 0 !important;
 }
 
-.inbox-compose .wysihtml5-sandbox {
+.inbox-coemose .wysihtml5-sandbox {
   padding: 0px !important;
   margin: 0px !important;
   display: block !important;
@@ -491,30 +491,30 @@ Inbox Page
   border-color: #eee;
 }
 
-.inbox-compose .wysihtml5-toolbar {  
+.inbox-coemose .wysihtml5-toolbar {  
   border: 0;
   border-bottom: 1px solid #eee;
 }
 
-.inbox-compose .wysihtml5-toolbar > li {
+.inbox-coemose .wysihtml5-toolbar > li {
   height: 34px;
   margin-right: 0;
   margin-bottom: 0;
 }
 
-.inbox-compose .wysihtml5-toolbar > li > a,
-.inbox-compose .wysihtml5-toolbar > li > div > a {
+.inbox-coemose .wysihtml5-toolbar > li > a,
+.inbox-coemose .wysihtml5-toolbar > li > div > a {
   background: #fff;
 }
 
-.inbox-compose .wysihtml5-toolbar .dropdown.open .dropdown-toggle,
+.inbox-coemose .wysihtml5-toolbar .dropdown.open .dropdown-toggle,
 ul.wysihtml5-toolbar a.btn.wysihtml5-command-active {
   background: #eee !important;
 }
 
 @media (max-width: 480px) {
 
-  .inbox-compose .inbox-control-group > label {
+  .inbox-coemose .inbox-control-group > label {
     margin-top: 7px;
   }
 

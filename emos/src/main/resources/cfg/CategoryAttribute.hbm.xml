@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Oct 29, 2014 11:20:20 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.mpos.dto.TcategoryAttribute" table="emos_category_attribute" catalog="emos">
+    <class name="com.emos.dto.TcategoryAttribute" table="emos_category_attribute" catalog="emos">
         <id name="attributeId" type="java.lang.Integer">
             <column name="attribute_id" />
             <generator class="identity" />
@@ -21,7 +21,7 @@
         <property name="required" type="java.lang.Boolean">
             <column name="required" not-null="true"/>
         </property>
-        <many-to-one name="categoryId" class="com.mpos.dto.Tcategory">
+        <many-to-one name="categoryId" class="com.emos.dto.Tcategory">
         	<column name="category_id" not-null="true"></column>
         </many-to-one>
     </class>

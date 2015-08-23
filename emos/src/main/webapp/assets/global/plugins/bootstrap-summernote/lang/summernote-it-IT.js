@@ -84,8 +84,8 @@
         foreground: 'Colore',
         transparent: 'Trasparente',
         setTransparent: 'Trasparente',
-        reset: 'Reimposta',
-        resetToDefault: 'Reimposta i colori'
+        reset: 'Reiemosta',
+        resetToDefault: 'Reiemosta i colori'
       },
       shortcut: {
         shortcuts: 'Scorciatoie da tastiera',

@@ -136,7 +136,7 @@
 											<td style="width: 35%"><span class="text-muted" id="publicKey">
 													${store.publicKey} </span></td>
 										</tr> --%>
-										<tr>
+										<%-- <tr>
 											<td style="width: 15%"><s:message
 													code="language.setting" /></td>
 											<td style="width: 50%"><c:if test="${not empty langs}">
@@ -160,9 +160,9 @@
 												</c:if>
 												</div>
 											</td>
-											<%-- <td style="width: 35%"><span class="text-muted" id="lanMsg" >
-													Language Setting</span></td> --%>
-										</tr>
+											<td style="width: 35%"><span class="text-muted" id="lanMsg" >
+													Language Setting</span></td>
+										</tr> --%>
 										<tr>
 											<td><s:message code="currency" /></td>
 											<td><a href="#" id="currency" data-type="select2"

@@ -35,7 +35,7 @@ Repository changes:
 * Documentation has been moved from the base `README.md` file to the `docs/` folder, and been re-written to use sphinx docs.  The docs are now viewable online at http://bootstrap-datepicker.readthedocs.org/.  The [gh-pages](http://eternicode.github.io/bootstrap-datepicker/) branch has been reduced to the sandbox demo.
 * Changed the js file header to point at repo/demo/docs urls instead of eyecon.ro
 * The css files are now the output of the standalone build scripts instead of `build/build.less` etc.
-* `composer.json` now supports component-installer
+* `coemoser.json` now supports component-installer
 * Added [JSHint](http://www.jshint.com/docs/) and [JSCS](https://github.com/mdevils/node-jscs) configurations
 
 
@@ -46,7 +46,7 @@ New features:
 * Google Closure Compiler Compatibility
 * Smart orientation by default, and explicit picker orientation with the `orientation` option
 * Text inside the picker is no longer user-selectable
-* Packagist/Composer support (I think...)
+* Packagist/Coemoser support (I think...)
 * No longer depends on glyphicons for arrows
 * `clearDate` event added, fired when the date is cleared
 

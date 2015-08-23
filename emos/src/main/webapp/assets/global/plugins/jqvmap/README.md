@@ -1,6 +1,6 @@
 ![JQVMap](http://jqvmap.com/img/logo.png "JQVMap")
 
-This project is a heavily modified version of [jVectorMap](https://github.com/bjornd/jvectormap).  I chose to start fresh rather than fork their project as my intentions were to take it in such a different direction that it would become incompatibale with the original source, rendering it near impossible to merge our projects together without extreme complications.
+This project is a heavily modified version of [jVectorMap](https://github.com/bjornd/jvectormap).  I chose to start fresh rather than fork their project as my intentions were to take it in such a different direction that it would become incompatibale with the original source, rendering it near iemossible to merge our projects together without extreme complications.
 
 jQuery Vector Map
 ======

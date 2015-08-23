@@ -21,7 +21,7 @@
 	-The controllers are autodetected POJOs labeled with the @Controller annotation.
 	Springmvc将在该路径下寻找Controller(有Controller注释的类)
 	-->
-	<context:component-scan base-package="com.mpos.action,com.mpos.dao,com.mpos.service,com.mpos.api" />
+	<context:component-scan base-package="com.emos.action,com.emos.dao,com.emos.service,com.emos.api" />
 	 
 	
 	   
@@ -94,7 +94,7 @@
 			<mvc:exclude-mapping path="/assets/**"/>
 			<mvc:exclude-mapping path="/media/**"/>
 			<mvc:exclude-mapping path="/static/**"/>  -->
-			<bean class="com.mpos.core.PermissionInteceptor"></bean>			
+			<bean class="com.emos.core.PermissionInteceptor"></bean>			
 		</mvc:interceptor>	    
 	</mvc:interceptors>
 	 

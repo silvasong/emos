@@ -382,7 +382,7 @@ that material) supplement the terms of this License with terms:
     f) Requiring indemnification of licensors and authors of that
     material by anyone who conveys the material (or modified versions of
     it) with contractual assumptions of liability to the recipient, for
-    any liability that these contractual assumptions directly impose on
+    any liability that these contractual assumptions directly iemose on
     those licensors and authors.
 
   All other non-permissive additional terms are considered "further
@@ -460,9 +460,9 @@ give under the previous paragraph, plus a right to possession of the
 Corresponding Source of the work from the predecessor in interest, if
 the predecessor has it or can get it with reasonable efforts.
 
-  You may not impose any further restrictions on the exercise of the
+  You may not iemose any further restrictions on the exercise of the
 rights granted or affirmed under this License.  For example, you may
-not impose a license fee, royalty, or other charge for exercise of
+not iemose a license fee, royalty, or other charge for exercise of
 rights granted under this License, and you may not initiate litigation
 (including a cross-claim or counterclaim in a lawsuit) alleging that
 any patent claim is infringed by making, using, selling, offering for
@@ -539,7 +539,7 @@ otherwise be available to you under applicable patent law.
 
   12. No Surrender of Others' Freedom.
 
-  If conditions are imposed on you (whether by court order, agreement or
+  If conditions are iemosed on you (whether by court order, agreement or
 otherwise) that contradict the conditions of this License, they do not
 excuse you from the conditions of this License.  If you cannot convey a
 covered work so as to satisfy simultaneously your obligations under this
@@ -582,7 +582,7 @@ public statement of acceptance of a version permanently authorizes you
 to choose that version for the Program.
 
   Later license versions may give you additional or different
-permissions.  However, no additional obligations are imposed on any
+permissions.  However, no additional obligations are iemosed on any
 author or copyright holder as a result of your choosing to follow a
 later version.
 

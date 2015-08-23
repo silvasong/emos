@@ -805,7 +805,7 @@
 	[ "804", "Melissa", "Davenport", "K7P 1S8", "Canada" ],
 	[ "805", "Noelle", "Nieves", "87427", "Martinique" ],
 	[ "806", "Myles", "Hart", "V6T 1W0", "Niue" ],
-	[ "807", "Jasper", "Campos", "78143", "Faroe Islands" ],
+	[ "807", "Jasper", "Caemos", "78143", "Faroe Islands" ],
 	[ "808", "Ariana", "Valentine", "J4X 2D4", "Ecuador" ],
 	[ "809", "Vanna", "Fletcher", "M4Z 1F9", "Faroe Islands" ],
 	[ "810", "Elijah", "Harper", "Y1B 7E4", "New Zealand" ],

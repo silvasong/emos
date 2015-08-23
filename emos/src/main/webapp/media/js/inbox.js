@@ -86,8 +86,8 @@ var Inbox = function () {
         }
     }
 
-    var loadCompose = function () {
-        var url = 'inbox_compose.html';
+    var loadCoemose = function () {
+        var url = 'inbox_coemose.html';
 
         loading.show();
         content.html('');
@@ -95,7 +95,7 @@ var Inbox = function () {
         // load the form via ajax
         $.post(url, {}, function (res) {
             $('.inbox-nav > li.active').removeClass('active');
-            $('.inbox-header > h1').text('Compose');
+            $('.inbox-header > h1').text('Coemose');
 
             loading.hide();
             content.html(res);
@@ -153,8 +153,8 @@ var Inbox = function () {
     }
 
     var handleCCInput = function () {
-        var the = $('.inbox-compose .mail-to .inbox-cc');
-        var input = $('.inbox-compose .input-cc');
+        var the = $('.inbox-coemose .mail-to .inbox-cc');
+        var input = $('.inbox-coemose .input-cc');
         the.hide();
         input.show();
         initTags($('[name="cc"]'), -10);
@@ -166,8 +166,8 @@ var Inbox = function () {
 
     var handleBCCInput = function () {
 
-        var the = $('.inbox-compose .mail-to .inbox-bcc');
-        var input = $('.inbox-compose .input-bcc');
+        var the = $('.inbox-coemose .mail-to .inbox-bcc');
+        var input = $('.inbox-coemose .input-bcc');
         the.hide();
         input.show();
         initTags($('[name="bcc"]'), -10);
@@ -181,9 +181,9 @@ var Inbox = function () {
         //main function to initiate the module
         init: function () {
 
-            // handle compose btn click
-            $('.inbox .compose-btn a').live('click', function () {
-                loadCompose();
+            // handle coemose btn click
+            $('.inbox .coemose-btn a').live('click', function () {
+                loadCoemose();
             });
 
             // handle reply and forward button click
@@ -216,21 +216,21 @@ var Inbox = function () {
                 loadInbox('trash');
             });
 
-            //handle compose/reply cc input toggle
-            $('.inbox-compose .mail-to .inbox-cc').live('click', function () {
+            //handle coemose/reply cc input toggle
+            $('.inbox-coemose .mail-to .inbox-cc').live('click', function () {
                 handleCCInput();
             });
 
-            //handle compose/reply bcc input toggle
-            $('.inbox-compose .mail-to .inbox-bcc').live('click', function () {
+            //handle coemose/reply bcc input toggle
+            $('.inbox-coemose .mail-to .inbox-bcc').live('click', function () {
                 handleBCCInput();
             });
 
             //handle loading content based on URL parameter
             if (App.getURLParameter("a") === "view") {
                 loadMessage();
-            } else if (App.getURLParameter("a") === "compose") {
-                loadCompose();
+            } else if (App.getURLParameter("a") === "coemose") {
+                loadCoemose();
             } else {
                 loadInbox('inbox');
             }

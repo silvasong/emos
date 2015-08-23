@@ -212,7 +212,7 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>mpos</finalName>
+    <finalName>emos</finalName>
     <plugins><!-- tomcat 的插件 -->
 	<plugin>
 		<groupId>org.apache.tomcat.maven</groupId>

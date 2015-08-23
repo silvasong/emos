@@ -249,10 +249,10 @@
                 urlInput.val(initialValue);
                 self.editor.currentView.element.focus();
                 if (caretBookmark) {
-                  self.editor.composer.selection.setBookmark(caretBookmark);
+                  self.editor.coemoser.selection.setBookmark(caretBookmark);
                   caretBookmark = null;
                 }
-                self.editor.composer.commands.exec("insertImage", url);
+                self.editor.coemoser.commands.exec("insertImage", url);
             };
 
             urlInput.keypress(function(e) {
@@ -277,7 +277,7 @@
 
                 if (!activeButton) {
                     self.editor.currentView.element.focus(false);
-                    caretBookmark = self.editor.composer.selection.getBookmark();
+                    caretBookmark = self.editor.coemoser.selection.getBookmark();
                     insertImageModal.appendTo('body').modal('show');
                     insertImageModal.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
                         e.stopPropagation();
@@ -304,12 +304,12 @@
                 urlInput.val(initialValue);
                 self.editor.currentView.element.focus();
                 if (caretBookmark) {
-                  self.editor.composer.selection.setBookmark(caretBookmark);
+                  self.editor.coemoser.selection.setBookmark(caretBookmark);
                   caretBookmark = null;
                 }
 
                 var newWindow = targetInput.prop("checked");
-                self.editor.composer.commands.exec("createLink", {
+                self.editor.coemoser.commands.exec("createLink", {
                     'href' : url,
                     'target' : (newWindow ? '_blank' : '_self'),
                     'rel' : (newWindow ? 'nofollow' : '')
@@ -339,7 +339,7 @@
 
                 if (!activeButton) {
                     self.editor.currentView.element.focus(false);
-                    caretBookmark = self.editor.composer.selection.getBookmark();
+                    caretBookmark = self.editor.coemoser.selection.getBookmark();
                     insertLinkModal.appendTo('body').modal('show');
                     Metronic.initUniform(); //initialize uniform checkboxes
                     insertLinkModal.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {

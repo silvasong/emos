@@ -70,10 +70,10 @@
 				</c:if>
 			</c:if>				
 						
-			<jsp:useBean id="menuBean" class="com.mpos.dto.TadminNodes"></jsp:useBean>	
+			<jsp:useBean id="menuBean" class="com.emos.dto.TadminNodes"></jsp:useBean>	
 			<jsp:setProperty name="menuBean" property="bitFlag" value="${menu.key.bitFlag}"></jsp:setProperty>	
 			<%
-			boolean isAdmin=((com.mpos.dto.TadminUser)session.getAttribute("Logined")).getAdminRole().getRoleId()==1;
+			boolean isAdmin=((com.emos.dto.TadminUser)session.getAttribute("Logined")).getAdminRole().getRoleId()==1;
 			Long userRights=null;
 			if(session.getAttribute("rights")!=null){
 				userRights=(Long)session.getAttribute("rights");
@@ -138,7 +138,7 @@
 				<c:if test="${menu.value!=null&&menu.value.size()>0}">
 					<ul class="sub-menu">
 					<c:forEach var="subMenu" items="${menu.value}" varStatus="substatus">						
-						<jsp:useBean id="subMenuBean" class="com.mpos.dto.TadminNodes"></jsp:useBean>	
+						<jsp:useBean id="subMenuBean" class="com.emos.dto.TadminNodes"></jsp:useBean>	
 						<jsp:setProperty name="subMenuBean" property="bitFlag" value="${subMenu.bitFlag}"></jsp:setProperty>
 						<%if((isAdmin&&userRights==0)||(userRights&subMenuBean.getBitFlag())>0){%>
 					   <li class="${(selectedNode!=null&&subMenu.nodeId==selectedNode.nodeId)?'active':''}">

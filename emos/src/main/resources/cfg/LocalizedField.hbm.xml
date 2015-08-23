@@ -3,12 +3,12 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2014-12-19 10:47:42 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.mpos.dto.TlocalizedField" table="emos_localized_field" lazy="false" catalog="emos" optimistic-lock="version">
+    <class name="com.emos.dto.TlocalizedField" table="emos_localized_field" lazy="false" catalog="emos" optimistic-lock="version">
         <id name="localeId" type="java.lang.Integer">
             <column name="locale_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="language" class="com.mpos.dto.Tlanguage" fetch="select">
+        <many-to-one name="language" class="com.emos.dto.Tlanguage" fetch="select">
             <column name="language_id" not-null="true" />
         </many-to-one>
         <property name="entityId" type="java.lang.Integer">

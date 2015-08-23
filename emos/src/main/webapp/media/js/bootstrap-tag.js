@@ -96,7 +96,7 @@
         });
 
 
-      //auto resize input: this option added by keenthemes for inbos compose form needs. this will enable typing a tag in hirozontal position and input auto resizes while typing
+      //auto resize input: this option added by keenthemes for inbos coemose form needs. this will enable typing a tag in hirozontal position and input auto resizes while typing
       if (that.options.autosizedInput) {
          var  input = that.input,
               minWidth = that.options.minWidth || input.width(),

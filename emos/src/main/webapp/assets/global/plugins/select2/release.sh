@@ -28,12 +28,12 @@ git pull
 
 echo "Updating Version Identifiers"
 
-sed -E -e "s/\"version\": \"([0-9\.]+)\",/\"version\": \"$ver\",/g" -i -- bower.json select2.jquery.json component.json composer.json package.json
+sed -E -e "s/\"version\": \"([0-9\.]+)\",/\"version\": \"$ver\",/g" -i -- bower.json select2.jquery.json component.json coemoser.json package.json
 
 git add bower.json
 git add select2.jquery.json
 git add component.json
-git add composer.json
+git add coemoser.json
 git add package.json
 
 git commit -m "modified version identifiers in descriptors for release $ver"

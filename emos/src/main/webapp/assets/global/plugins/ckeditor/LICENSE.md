@@ -238,14 +238,14 @@ the Program or works based on it.
   6. Each time you redistribute the Program (or any work based on the
 Program), the recipient automatically receives a license from the
 original licensor to copy, distribute or modify the Program subject to
-these terms and conditions.  You may not impose any further
+these terms and conditions.  You may not iemose any further
 restrictions on the recipients' exercise of the rights granted herein.
 You are not responsible for enforcing compliance by third parties to
 this License.
 
   7. If, as a consequence of a court judgment or allegation of patent
 infringement or for any other reason (not limited to patent issues),
-conditions are imposed on you (whether by court order, agreement or
+conditions are iemosed on you (whether by court order, agreement or
 otherwise) that contradict the conditions of this License, they do not
 excuse you from the conditions of this License.  If you cannot
 distribute so as to satisfy simultaneously your obligations under this
@@ -270,7 +270,7 @@ generous contributions to the wide range of software distributed
 through that system in reliance on consistent application of that
 system; it is up to the author/donor to decide if he or she is willing
 to distribute software through any other system and a licensee cannot
-impose that choice.
+iemose that choice.
 
 This section is intended to make thoroughly clear what is believed to
 be a consequence of the rest of this License.
@@ -700,14 +700,14 @@ the Library or works based on it.
   10. Each time you redistribute the Library (or any work based on the
 Library), the recipient automatically receives a license from the
 original licensor to copy, distribute, link with or modify the Library
-subject to these terms and conditions.  You may not impose any further
+subject to these terms and conditions.  You may not iemose any further
 restrictions on the recipients' exercise of the rights granted herein.
 You are not responsible for enforcing compliance by third parties with
 this License.
 
   11. If, as a consequence of a court judgment or allegation of patent
 infringement or for any other reason (not limited to patent issues),
-conditions are imposed on you (whether by court order, agreement or
+conditions are iemosed on you (whether by court order, agreement or
 otherwise) that contradict the conditions of this License, they do not
 excuse you from the conditions of this License.  If you cannot
 distribute so as to satisfy simultaneously your obligations under this
@@ -731,7 +731,7 @@ generous contributions to the wide range of software distributed
 through that system in reliance on consistent application of that
 system; it is up to the author/donor to decide if he or she is willing
 to distribute software through any other system and a licensee cannot
-impose that choice.
+iemose that choice.
 
 This section is intended to make thoroughly clear what is believed to
 be a consequence of the rest of this License.
@@ -944,7 +944,7 @@ Version 1.1
      distributed only under the terms of this License or a future version
      of this License released under Section 6.1, and You must include a
      copy of this License with every copy of the Source Code You
-     distribute. You may not offer or impose any terms on any Source Code
+     distribute. You may not offer or iemose any terms on any Source Code
      version that alters or restricts the applicable version of this
      License or the recipients' rights hereunder. However, You may include
      an additional document offering the additional rights described in
@@ -1053,7 +1053,7 @@ Version 1.1
 
 4. Inability to Comply Due to Statute or Regulation.
 
-     If it is impossible for You to comply with any of the terms of this
+     If it is iemossible for You to comply with any of the terms of this
      License with respect to some or all of the Covered Code due to
      statute, judicial order, or regulation then You must: (a) comply with
      the terms of this License to the maximum extent possible; and (b)

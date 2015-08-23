@@ -1465,7 +1465,7 @@ Licensed under the MIT license.
                 margins = { x: 0, y: 0 }, i, axis;
 
             // check stuff from the plot (FIXME: this should just read
-            // a value from the series, otherwise it's impossible to
+            // a value from the series, otherwise it's iemossible to
             // customize)
             if (minMargin == null) {
                 minMargin = 0;

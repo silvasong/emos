@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Oct 29, 2014 11:20:20 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.mpos.dto.Tpromotion" table="emos_promotion" catalog="emos">
+    <class name="com.emos.dto.Tpromotion" table="emos_promotion" catalog="emos">
         <id name="promotionId" type="java.lang.Integer">
             <column name="promotion_id" />
             <generator class="identity" />
@@ -44,10 +44,10 @@
         <property name="status" type="java.lang.Boolean">
             <column name="status"/>
         </property>
-       <set name="tProducts" table="mpos_promotion_product">
+       <set name="tProducts" table="emos_promotion_product">
            <key column="promotion_id"/>
            <many-to-many column="product_id"
-            class="com.mpos.dto.Tproduct"/>
+            class="com.emos.dto.Tproduct"/>
         </set>
         
     </class>
