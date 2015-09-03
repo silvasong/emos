@@ -391,6 +391,9 @@ public class MobileAPI {
 			for(Integer key :productMap.keySet()){
 				menuProductModel = new MenuProductModel();
 				menuProductModel.setMenuId(key);
+				Tmenu m = productMap.get(key).get(0).getTmenu();
+				menuProductModel.setMenuName(m.getTitle());
+				menuProductModel.setSort(m.getSort());
 				productModels = new ArrayList<ProductModel>();
 				for(Tcommodity product : productMap.get(key)){
                      model = new ProductModel();

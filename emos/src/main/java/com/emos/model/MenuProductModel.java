@@ -6,6 +6,10 @@ public class MenuProductModel {
 	
 	private Integer MenuId;
 	
+	private String menuName;
+	
+	private Integer sort;
+	
 	private List<ProductModel> foods;
 
 	
@@ -16,6 +20,24 @@ public class MenuProductModel {
 
 	public void setMenuId(Integer menuId) {
 		MenuId = menuId;
+	}
+    
+	
+	
+	public String getMenuName() {
+		return menuName;
+	}
+
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+
+	public Integer getSort() {
+		return sort;
+	}
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
 	}
 
 	public List<ProductModel> getFoods() {
