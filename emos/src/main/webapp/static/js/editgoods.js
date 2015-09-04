@@ -788,8 +788,8 @@ var Editgoods = function () {
     	
     	editFormValidation();
     	Initrules();
-    	Initspecattributes();
-    	Initorderattributes();
+    	//Initspecattributes();
+    	//Initorderattributes();
     	
     }
 

@@ -29,6 +29,7 @@ import com.emos.dao.GoodsAttributeDao;
 import com.emos.dao.GoodsDao;
 import com.emos.dao.GoodsImageDao;
 import com.emos.dao.LocalizedFieldDao;
+import com.emos.dto.Tcategory;
 import com.emos.dto.TgoodsAttribute;
 import com.emos.dto.TlocalizedField;
 import com.emos.dto.Tmenu;
@@ -178,6 +179,10 @@ public class GoodsServiceImpl implements GoodsService {
 		}
 		product.setStatus(true);
 		product.setTmenu(model.getMenu());
+		Tcategory tcategory = new Tcategory();
+		tcategory.setCategoryId(0);
+		model.setAttributeGroup(tcategory);
+		model.setSpecid(0);
 		if (model.getAttributeGroup().getCategoryId() != 0) {
 			product.setTcategory(model.getAttributeGroup());
 		}
@@ -300,6 +305,10 @@ public class GoodsServiceImpl implements GoodsService {
 		product.setIsPut(model.getIsPut());
 		product.setId(model.getProductId());
 		product.setStoreId(model.getStoreId());
+		Tcategory tcategory = new Tcategory();
+		tcategory.setCategoryId(0);
+		model.setAttributeGroup(tcategory);
+		model.setSpecid(0);
 		if (model.getAttributeGroup().getCategoryId() != 0) {
 			product.setTcategory(model.getAttributeGroup());
 		}

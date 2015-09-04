@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -146,7 +147,7 @@ public class MobileAPI {
 	 */
 	@RequestMapping(value = "getSetting", method = RequestMethod.GET)
 	@ResponseBody
-	public String getSetting(HttpServletResponse response, HttpServletRequest request, @RequestHeader("Authorization") String apiKey) {
+	public String getSetting(HttpServletResponse response, HttpServletRequest request, @RequestParam("Authorization") String apiKey) {
 		JSONObject respJson = new JSONObject();
 		Integer storeId = SystemConfig.STORE_TAKEN_MAP.get(apiKey);
 		if (storeId==null) {
@@ -301,7 +302,7 @@ public class MobileAPI {
 	 */
 	@RequestMapping(value = "getMenu", method = RequestMethod.GET)
 	@ResponseBody
-	public String getMenu(HttpServletResponse response, @RequestHeader("Authorization") String apiKey) {
+	public String getMenu(HttpServletResponse response, @RequestParam("Authorization") String apiKey) {
 		JSONObject respJson = new JSONObject();
 		Integer storeId = SystemConfig.STORE_TAKEN_MAP.get(apiKey);
 		if (storeId == null) {
@@ -350,7 +351,7 @@ public class MobileAPI {
 	 */
 	@RequestMapping(value = "getProduct", method = RequestMethod.GET)
 	@ResponseBody
-	public String getProduct(HttpServletRequest request, HttpServletResponse response, @RequestHeader("Authorization") String apiKey) {
+	public String getProduct(HttpServletRequest request, HttpServletResponse response, @RequestParam("Authorization") String apiKey) {
 		// 获取缓存apiToken
 		Integer storeId = SystemConfig.STORE_TAKEN_MAP.get(apiKey);
 		JSONObject respJson = new JSONObject();
@@ -446,7 +447,7 @@ public class MobileAPI {
 	 */
 	@RequestMapping(value = "getProduct/{productId}", method = RequestMethod.GET)
 	@ResponseBody
-	public String getProductById(HttpServletRequest request, HttpServletResponse response, @RequestHeader("Authorization") String apiKey, @PathVariable Integer productId) {
+	public String getProductById(HttpServletRequest request, HttpServletResponse response, @RequestParam("Authorization") String apiKey, @PathVariable Integer productId) {
 		// 获取缓存apiToken
 		Integer storeId = SystemConfig.STORE_TAKEN_MAP.get(apiKey);
 		JSONObject respJson = new JSONObject();
@@ -648,7 +649,7 @@ public class MobileAPI {
 
 	@RequestMapping(value = "callWaiter/{appId}/{type}", method = RequestMethod.GET)
 	@ResponseBody
-	public String callWaiter(HttpServletResponse response, @RequestHeader("Authorization") String apiKey, @PathVariable String appId, @PathVariable String type) {
+	public String callWaiter(HttpServletResponse response, @RequestParam("Authorization") String apiKey, @PathVariable String appId, @PathVariable String type) {
 		// 获取缓存apiToken
 		String apiToken = SystemConfig.Admin_Setting_Map.get(SystemConstants.CONFIG_API_TOKEN);
 		JSONObject respJson = new JSONObject();

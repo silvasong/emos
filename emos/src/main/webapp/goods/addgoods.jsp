@@ -294,7 +294,7 @@
 								</div> --%>
 
 								
-								 <div class="portlet light bg-inverse form-fit">
+								<%--  <div class="portlet light bg-inverse form-fit">
 									<div class="portlet-title">
 										<div class="caption">
 											<i class="icon-equalizer font-red-sunglo"></i>
@@ -314,9 +314,9 @@
 											
 										</div>
 									</div>
-								</div>															
+								</div>	 --%>														
 								
-									<div class="portlet light bg-inverse form-fit">
+									<%-- <div class="portlet light bg-inverse form-fit">
 									<div class="portlet-title">
 										<div class="caption">
 											<i class="icon-equalizer font-red-sunglo"></i>
@@ -336,7 +336,7 @@
 											
 										</div>
 									</div>
-								</div>
+								</div> --%>
 								
 								<!--Begin images upload form-->
 								<h3 class="form-section"><s:message code="image.upload" /></h3>

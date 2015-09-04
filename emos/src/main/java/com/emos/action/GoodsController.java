@@ -363,13 +363,15 @@ public class GoodsController extends BaseController{
 			request.getSession().setAttribute("addsussess","operate.success");
 			mav.setViewName("redirect:/goods");
 		} catch (EmosException  e) {
-		
+		    
+			e.printStackTrace();
 			/*mav.addObject("errorMsg", e.getMessage());*/
 			handleContent = "添加商品:"+model.getProductName()+"失败";
 			
 			
 			request.getSession().setAttribute("adderrorMsg", getMessage(request,e.getErrorID(),e.getMessage()));
 			mav.setViewName("redirect:/goods/addgoods");
+			
 		}	
 		
 		return mav;

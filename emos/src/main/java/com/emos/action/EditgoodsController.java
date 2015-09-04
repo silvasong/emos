@@ -85,220 +85,99 @@ private GoodsAttributeService goodsAttributeService;
 @Autowired
 private LocalizedFieldService localizedFieldService;
 
-/**
- * 操作内容
- */
+
 private String handleContent = "";
 
 
 private LinkedHashMap<Integer,FileMeta> filesMap = new LinkedHashMap<Integer,FileMeta>();
 private int imgIndex=0;	
 
-	@SuppressWarnings("unused")
-	@RequestMapping(value="/editgoods/{ids}",method=RequestMethod.GET)
-	public ModelAndView eidtgoods(@PathVariable String ids,HttpServletRequest request,Integer storeId){
-		imgIndex=0;
-		filesMap.clear();
-		Integer id=Integer.parseInt(ids);
-		JSONObject respJson = new JSONObject();
-		ModelAndView mav=new ModelAndView();
-		try {
-			Tproduct product=goodsService.getTproductByid(id);
-			String local=getLocale(request);
-			Tlanguage language=languageService.getLanguageBylocal(local);
-			 List<TlocalizedField> productName_locale=new ArrayList<TlocalizedField>();
-			 List<TlocalizedField> shortDescr_locale=new ArrayList<TlocalizedField>();
-			 List<TlocalizedField> fullDescr_locale=new ArrayList<TlocalizedField>();
-			 List<TlocalizedField> unitName_locale=new ArrayList<TlocalizedField>();
-			 if(storeId==null||storeId==-1){
-				 storeId = getSessionUser(request).getStoreId();
-			 }
-			 List<Tcategory> ordercategoryList=categoryService.getallCategory(1,language,storeId);
-				List<Tcategory> speccategoryList=categoryService.getallCategory(0,language,storeId);
-				Map<Integer, String> ordercategoryMap = new HashMap<Integer, String>();  
-				Map<Integer, String> speccategoryMap = new HashMap<Integer, String>();
-				for (Tcategory tcategory : ordercategoryList) {
-					ordercategoryMap.put(tcategory.getCategoryId(), tcategory.getName());
-				}
-				for(Tcategory tcategory : speccategoryList){
-					speccategoryMap.put(tcategory.getCategoryId(), tcategory.getName());
-				}
-				mav.addObject("ordercategory", ordercategoryMap);
-				mav.addObject("speccategory", speccategoryMap);
-			//List<Tmenu> menus=menuService.getAllMenu();
-				
-			Map<Integer, String> menusMap = new HashMap<Integer, String>(); 
-			List<MenuModel> menus=menuService.getNoChildrenMenus(language,getSessionUser(request).getStoreId());
+@SuppressWarnings("unused")
+@RequestMapping(value="/editgoods/{ids}",method=RequestMethod.GET)
+public ModelAndView eidtgoods(@PathVariable String ids,HttpServletRequest request,Integer storeId){
+	imgIndex=0;
+	filesMap.clear();
+	Integer id=Integer.parseInt(ids);
+	JSONObject respJson = new JSONObject();
+	ModelAndView mav=new ModelAndView();
+	try {
+		Tproduct product=goodsService.getTproductByid(id);
+		String local=getLocale(request);
+		Tlanguage language=languageService.getLanguageBylocal(local);
+		 List<TlocalizedField> productName_locale=new ArrayList<TlocalizedField>();
+		 List<TlocalizedField> shortDescr_locale=new ArrayList<TlocalizedField>();
+		 List<TlocalizedField> fullDescr_locale=new ArrayList<TlocalizedField>();
+		 List<TlocalizedField> unitName_locale=new ArrayList<TlocalizedField>();
+		 if(storeId==null||storeId==-1){
+			 storeId = getSessionUser(request).getStoreId();
+		 }
+		 List<Tcategory> ordercategoryList=categoryService.getallCategory(1,language,storeId);
+			List<Tcategory> speccategoryList=categoryService.getallCategory(0,language,storeId);
+			Map<Integer, String> ordercategoryMap = new HashMap<Integer, String>();  
+			Map<Integer, String> speccategoryMap = new HashMap<Integer, String>();
+			for (Tcategory tcategory : ordercategoryList) {
+				ordercategoryMap.put(tcategory.getCategoryId(), tcategory.getName());
+			}
+			for(Tcategory tcategory : speccategoryList){
+				speccategoryMap.put(tcategory.getCategoryId(), tcategory.getName());
+			}
+			mav.addObject("ordercategory", ordercategoryMap);
+			mav.addObject("speccategory", speccategoryMap);
 		
-			for (MenuModel menu : menus) {
-				menusMap.put(menu.getId(), menu.getTitle());
-			}
-			mav.addObject("menu", menusMap);
-			AddProductModel Productmodel=new AddProductModel();
-			Productmodel.setFullDescr(product.getFullDescr());
-			Productmodel.setMenu(product.getTmenu());
-			Productmodel.setOldPrice(product.getOldPrice());
-			Productmodel.setAttributeGroup(product.getTcategory());
-			Productmodel.setPrice(product.getPrice());
-			Productmodel.setShortDescr(product.getShortDescr());
-			Productmodel.setSort(product.getSort());
-			Productmodel.setSku(product.getSku());
-			Productmodel.setProductName(product.getProductName());
-			Productmodel.setUnitName(product.getUnitName());
-			Productmodel.setMenu(product.getTmenu());
-			Productmodel.setRecommend(product.isRecommend());
-			Productmodel.setProductId(product.getId());
-			Productmodel.setSpecid(product.getSpecid());
-			Productmodel.setStoreId(product.getStoreId());
-			Productmodel.setIsPut(product.getIsPut());
-			productName_locale=localizedFieldService.getLocalizedField(product.getId(),Tproduct.class.getSimpleName() , "productName");
-			shortDescr_locale=localizedFieldService.getLocalizedField(product.getId(),Tproduct.class.getSimpleName() , "shortDescr");
-			fullDescr_locale=localizedFieldService.getLocalizedField(product.getId(),Tproduct.class.getSimpleName() , "fullDescr");
-			unitName_locale=localizedFieldService.getLocalizedField(product.getId(),Tproduct.class.getSimpleName() , "unitName");
-			Productmodel.setProductName_locale(productName_locale);
-			Productmodel.setFullDescr_locale(fullDescr_locale);
-			Productmodel.setShortDescr_locale(shortDescr_locale);
-			Productmodel.setUnitName_locale(unitName_locale);
-			Object string=request.getSession().getAttribute("editerrorMsg");
-			if (string!=null) {
-				mav.addObject("Msg", string);
-				
-			}
-			request.getSession().setAttribute("editerrorMsg", null);
-			//respJson.put("list", LocalizedField.setValues(list));
-			List<Tlanguage> languages = languageService.loadAllTlanguage();
-			mav.addObject("lanList", languages);
-			//mav.addObject("menu", menus);
-/*			List<TproductImage> productImage=goodsImageService.getByProductid(product.getId());
-			if (productImage.size()>0) {
-				mav.addObject("productImage",productImage.get(0));
-			}
-			if(product.getTcategory()!=null){
-			categoryAttribute=CategoryAttributeService.getCategoryAttributeByCategoryid(product.getTcategory().getCategoryId());
-			for (int i = 0; i < categoryAttribute.size(); i++) {
-				TproductAttributeId productAttributeId=new TproductAttributeId();
-				AddAttributevaleModel model=new AddAttributevaleModel();
-				productAttributeId.setCategoryAttribute(categoryAttribute.get(i));
-				productAttributeId.setProduct(product);
-				TproductAttribute productAttribute=productAttributeService.getAttributes(productAttributeId);
-				if (productAttribute!=null) {
-					model.setAttributeId(categoryAttribute.get(i).getAttributeId());
-					model.setContent(productAttribute.getContent());
-//					model.setPrice(productAttribute.getPrice());
-					model.setTitle(categoryAttribute.get(i).getTitle());
-					addAttributevalemodels.add(model);
-				}
-				
-			}
-			}
-			mav.addObject("categoryAttribute",categoryAttribute);
-			mav.addObject("addAttributevalemodels", addAttributevalemodels);
-			*/
 			
-			mav.addObject("product", Productmodel);
-			mav.setViewName("goods/editgoods");
-			
-		} catch (EmosException be ) {	
+		Map<Integer, String> menusMap = new HashMap<Integer, String>(); 
+		List<MenuModel> menus=menuService.getNoChildrenMenus(language,getSessionUser(request).getStoreId());
+	
+		for (MenuModel menu : menus) {
+			menusMap.put(menu.getId(), menu.getTitle());
+		}
+		mav.addObject("menu", menusMap);
+		AddProductModel Productmodel=new AddProductModel();
+		Productmodel.setFullDescr(product.getFullDescr());
+		Productmodel.setMenu(product.getTmenu());
+		Productmodel.setOldPrice(product.getOldPrice());
+		Productmodel.setAttributeGroup(product.getTcategory());
+		Productmodel.setPrice(product.getPrice());
+		Productmodel.setShortDescr(product.getShortDescr());
+		Productmodel.setSort(product.getSort());
+		Productmodel.setSku(product.getSku());
+		Productmodel.setProductName(product.getProductName());
+		Productmodel.setUnitName(product.getUnitName());
+		Productmodel.setMenu(product.getTmenu());
+		Productmodel.setRecommend(product.isRecommend());
+		Productmodel.setProductId(product.getId());
+		Productmodel.setSpecid(product.getSpecid());
+		Productmodel.setStoreId(product.getStoreId());
+		Productmodel.setIsPut(product.getIsPut());
+		productName_locale=localizedFieldService.getLocalizedField(product.getId(),Tproduct.class.getSimpleName() , "productName");
+		shortDescr_locale=localizedFieldService.getLocalizedField(product.getId(),Tproduct.class.getSimpleName() , "shortDescr");
+		fullDescr_locale=localizedFieldService.getLocalizedField(product.getId(),Tproduct.class.getSimpleName() , "fullDescr");
+		unitName_locale=localizedFieldService.getLocalizedField(product.getId(),Tproduct.class.getSimpleName() , "unitName");
+		Productmodel.setProductName_locale(productName_locale);
+		Productmodel.setFullDescr_locale(fullDescr_locale);
+		Productmodel.setShortDescr_locale(shortDescr_locale);
+		Productmodel.setUnitName_locale(unitName_locale);
+		Object string=request.getSession().getAttribute("editerrorMsg");
+		if (string!=null) {
+			mav.addObject("Msg", string);
 			
 		}
+		request.getSession().setAttribute("editerrorMsg", null);
+	
+		List<Tlanguage> languages = languageService.loadAllTlanguage();
+		mav.addObject("lanList", languages);
+	
+		mav.addObject("product", Productmodel);
+		mav.setViewName("goods/editgoods");
 		
-		return mav;
+	} catch (EmosException be ) {	
+		
 	}
-/*	@RequestMapping(value="/editgoods/editgoods",method=RequestMethod.POST)
-	@ResponseBody
-	public ModelAndView editGoods(HttpServletRequest request,AddGoodsModel model,AddgoodsLocal value,
-			@RequestParam(value = "files", required = false) MultipartFile[] file)throws IOException{
-		Tproduct product=new Tproduct();
-		JSONObject respJson = new JSONObject();
-		product.setId(model.getPorductid());
-		List<TproductAttribute> tproductAttributelist=new ArrayList<TproductAttribute>(); 
-		product.setShortDescr(model.getShortDescr());
-		product.setFullDescr(model.getFullDescr());
-		product.setPrice(model.getPrice());
-		product.setOldPrice(model.getOldPrice());
-		product.setProductName(model.getProductName());
-		product.setUnitName(model.getUnitName());
-		product.setStatus(true);
-		Tcategory catefory=categoryService.getCategory(model.getCategoryId());
-		product.setTcategory(catefory);
-		Tmenu menu=menuService.getMenu(model.getMenuId());
-		product.setTmenu(menu);
-		product.setRecommend(model.isRecommend());
-		product.setSort(model.getSort());
-		try {
-			
-		try {
-			goodsService.updateGoods(product);
-			productReleaseService.createOrupdateProductRelease(product.getId());
-			localizedFieldService.updateLocalizedFieldList(value.setValue(product));
-		} catch (emos be) {
-			
-		}
-		
-		Iterator it = SystemConfig.product_AttributeModel_Map.keySet().iterator(); 
-		   while (it.hasNext()){ 
-		    String key; 
-		    key=(String)it.next(); 
-		    AddAttributevaleModel models= SystemConfig.product_AttributeModel_Map.get(key);
-		    TcategoryAttribute categoryAttribute=CategoryAttributeService.getCategoryAttribute(models.getAttributeId());
-		    TproductAttribute tproductAttribute=new TproductAttribute();
-		    tproductAttribute.setContent(models.getContent());
-//		    tproductAttribute.setPrice(models.getPrice());
-		    TproductAttributeId productAttributeid=new TproductAttributeId();
-		    productAttributeid.setCategoryAttribute(categoryAttribute);
-		    productAttributeid.setProduct(product);
-		    tproductAttribute.setId(productAttributeid);
-		    tproductAttributelist.add(tproductAttribute);
-		   } 
-		   for (int i = 0; i < tproductAttributelist.size(); i++) {
-			   try {
-				   productAttributeService.updattProductAttribute(tproductAttributelist.get(i));;
-				   
-			} catch (emos be) {
-					
-			}
-			
-		}
-		SystemConfig.product_AttributeModel_Map.clear();
-		for(int i=0;i<file.length;i++){
-			if (!(file[i].isEmpty())) {
-				TproductImage productImage=new TproductImage();
-				InputStream inputStream = file[i].getInputStream();
-				byte [] image=new byte[1048576];
-				inputStream.read(image);
-				String filename=file[i].getOriginalFilename();
-				String s[]=filename.split("\\.");
-				productImage.setImageSuffix(s[s.length-1]);
-				productImage.setImage(image);
-				productImage.setProduct(product);
-				try {
-				//	goodsImageService.CreateImages(productImage);
-					//File file2=new File(request.getSession().getServletContext().getRealPath("/")+File.separator+"static"+File.separator+"upload"+File.separator+productImage.getId()+"."+productImage.getImageSuffix());
-					File file2=new File(request.getSession().getServletContext().getRealPath("/")+File.separator+"static"+File.separator+"upload"
-											+File.separator+productImage.getId()+"."+productImage.getImageSuffix());
-											//+File.separator+productImage.getId()+"."+productImage.getImageSuffix());
-					File file3=new File(request.getSession().getServletContext().getRealPath("/")+File.separator+"static"+File.separator+"upload"+File.separator+"23.jpg");
-					if(file3.exists()){
-					ImageOutputStream ios= ImageIO.createImageOutputStream(file3);
-					ios.write(image);
-					String path="static/upload/"
-							+productImage.getId()+"."+productImage.getImageSuffix();
-					productImage.setImageUrl(path);
-					goodsImageService.updeteImages(productImage);
-					}
-				} catch (emos be) {
-					System.out.print(getMessage(request,be.getErrorID(),be.getMessage()));
-					
-				}
-			}
-		}
-		respJson.put("status", true);
-		}catch(emos be){
-			
-		}	
-		return new ModelAndView("redirect:/goods");
-		
-	}*/
+	
+	return mav;
+}
+
+
 	@RequestMapping(value="editgoods/getAttributes/{ids}",method=RequestMethod.GET)
 	@ResponseBody
 	public String getattributes(HttpServletRequest request,@PathVariable String ids){
@@ -347,7 +226,7 @@ private int imgIndex=0;
 	public String getproductImages(@PathVariable String ids,HttpServletRequest request){
 		List<TproductImage> list= new ArrayList<TproductImage>();
 		Integer id=Integer.parseInt(ids);
-		//JSONObject jsonObj = new JSONObject();
+		
 		JSONObject respJson = new JSONObject();
 		JSONArray jsonArray=new JSONArray();
 		list=goodsImageService.getByProductid(id);
@@ -367,7 +246,7 @@ private int imgIndex=0;
 	    	jsonObj.put("fileName",fileName);
 	    	jsonObj.put("fileSize", list.get(i).getImage().length/1024+"kb");
 	    	jsonObj.put("url", list.get(i).getImageUrl());
-	    	//jsonObj.put("fileSize",fileSize);
+	    	
 	    	File filemkdir=new File(request.getSession().getServletContext().getRealPath("/")+File.separator+"upload"+File.separator+"product");
         	
     		if (!filemkdir.isDirectory()) {

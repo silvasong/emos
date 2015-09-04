@@ -300,7 +300,7 @@
 										</div>
 									</div>														
 								</div> --%>
-								<div class="portlet light bg-inverse form-fit">
+								<%-- <div class="portlet light bg-inverse form-fit">
 									<div class="portlet-title">
 										<div class="caption">
 											<i class="icon-equalizer font-red-sunglo"></i>
@@ -320,9 +320,9 @@
 											
 										</div>
 									</div>
-								</div>															
+								</div>		 --%>													
 								
-									<div class="portlet light bg-inverse form-fit">
+									<%-- <div class="portlet light bg-inverse form-fit">
 									<div class="portlet-title">
 										<div class="caption">
 											<i class="icon-equalizer font-red-sunglo"></i>
@@ -342,7 +342,7 @@
 											
 										</div>
 									</div>
-								</div>															
+								</div>	 --%>														
 								
 								
 								
