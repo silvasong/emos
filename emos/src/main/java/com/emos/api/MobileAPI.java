@@ -154,7 +154,7 @@ public class MobileAPI {
 			respJson.put("status", false);
 			respJson.put("code", CODE);
 			respJson.put("info", "Error Init API token.");
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 		try {
 			List<Tlanguage> langs = languageService.getLangListByStoreId(storeId);
@@ -216,12 +216,12 @@ public class MobileAPI {
 			respJson.put("status", true);
 			respJson.put("info", "OK");
 			respJson.put("data", dataJson);
-
-			return JSON.toJSONString(respJson);
+            
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		} catch (Exception e) {
 			respJson.put("status", false);
 			respJson.put("info", e.getMessage());
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 	}
 
@@ -243,13 +243,13 @@ public class MobileAPI {
 			respJson.put("code", CODE);
 			respJson.put("status", false);
 			respJson.put("info", "Error API token.");
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 
 		if (jsonStr == null || jsonStr.isEmpty()) {
 			respJson.put("status", false);
 			respJson.put("info", "The request parameter is required.");
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 
 		try {
@@ -258,13 +258,13 @@ public class MobileAPI {
 			if (appid == null || appid.isEmpty()) {
 				respJson.put("status", false);
 				respJson.put("info", "The parameter appId is required.");
-				return JSON.toJSONString(respJson);
+				return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 			}
 			String orderIds = jsonObj.getString("orderIds");
 			if (orderIds == null || orderIds.isEmpty() || orderIds.split(",").length == 0) {
 				respJson.put("status", false);
 				respJson.put("info", "The parameter orderIds is required.");
-				return JSON.toJSONString(respJson);
+				return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 			}
 
 			String[] orderIdsStr = orderIds.split(",");
@@ -285,11 +285,11 @@ public class MobileAPI {
 			respJson.put("info", "OK");
 			respJson.put("data", data);
 
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		} catch (EmosException e) {
 			respJson.put("status", false);
 			respJson.put("info", e.getMessage());
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 	}
 
@@ -309,7 +309,7 @@ public class MobileAPI {
 			respJson.put("code", CODE);
 			respJson.put("status", false);
 			respJson.put("info", "Error API token.");
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 
 		try {
@@ -333,11 +333,11 @@ public class MobileAPI {
 			respJson.put("info", "OK");
 			respJson.put("data", menuList);
 
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		} catch (EmosException e) {
 			respJson.put("status", false);
 			respJson.put("info", e.getMessage());
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 	}
 
@@ -362,7 +362,7 @@ public class MobileAPI {
 			respJson.put("code", CODE);
 			respJson.put("status", false);
 			respJson.put("info", "Error API token.");
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 		
 		try {
@@ -374,7 +374,7 @@ public class MobileAPI {
 				respJson.put("status", true);
 				respJson.put("data", menuProductModel);
 				respJson.put("info", "product is not exist");
-				return JSON.toJSONString(respJson);
+				return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 			}
 			// 新建返回数据model
 			List <Tcommodity> comList = null;
@@ -430,11 +430,11 @@ public class MobileAPI {
 			respJson.put("status", true);
 			respJson.put("info", "OK");
 			respJson.put("data", jsonArray);
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		} catch (Exception e) {
 			respJson.put("status", false);
 			respJson.put("info", e.getMessage());
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 	}
     
@@ -456,13 +456,13 @@ public class MobileAPI {
 			respJson.put("code", CODE);
 			respJson.put("status", false);
 			respJson.put("info", "Error API token.");
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 		// 判断请求参数
 		if (productId == null || productId == 0) {
 			respJson.put("status", false);
 			respJson.put("info", "The request parameter productId is required");
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 		try {
 			// 查询商品
@@ -474,7 +474,7 @@ public class MobileAPI {
 				model.setProductId(productId);
 				respJson.put("data", model);
 				respJson.put("info", "product is not exist");
-				return JSON.toJSONString(respJson);
+				return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 			}
 			// 新建返回数据model
 			
@@ -505,11 +505,11 @@ public class MobileAPI {
 			respJson.put("status", true);
 			respJson.put("info", "OK");
 			respJson.put("data", model);
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		} catch (Exception e) {
 			respJson.put("status", false);
 			respJson.put("info", e.getMessage());
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 	}
 	
@@ -525,14 +525,14 @@ public class MobileAPI {
 			respJson.put("code", CODE);
 			respJson.put("status", false);
 			respJson.put("info", "Error API token.");
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 
 		// 判断请求参数
 		if (jsonStr == null || jsonStr.isEmpty()) {
 			respJson.put("status", false);
 			respJson.put("info", "The request parameter is required.");
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 		try {
 			// 参加满减活动列表
@@ -567,7 +567,7 @@ public class MobileAPI {
 					respJson.put("status", false);
 					respJson.put("info", productId + " product is not exist");
 					orderService.deleteOrder(order);
-					return JSON.toJSONString(respJson);
+					return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 				}
 				
 				// 通过优惠列表计算商品价格
@@ -639,11 +639,11 @@ public class MobileAPI {
 			respJson.put("status", true);
 			respJson.put("info", "OK");
 			respJson.put("data", data);
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		} catch (EmosException e) {
 			respJson.put("status", false);
 			respJson.put("info", e.getMessage());
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 	}
 
@@ -658,18 +658,18 @@ public class MobileAPI {
 			respJson.put("code", CODE);
 			respJson.put("status", false);
 			respJson.put("info", "Error API token.");
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 		// 判断请求参数
 		if (appId == null || appId.isEmpty()) {
 			respJson.put("status", false);
 			respJson.put("info", "The request parameter appId is required");
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 		if (type == null || type.isEmpty()) {
 			respJson.put("status", false);
 			respJson.put("info", "The request parameter type is required");
-			return JSON.toJSONString(respJson);
+			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 		}
 		Date nowTime = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -700,7 +700,7 @@ public class MobileAPI {
 		respJson.put("data", data);
 		respJson.put("info", msg);
 		respJson.put("status", true);
-		return JSON.toJSONString(respJson);
+		return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 	}
 
 	
@@ -722,14 +722,14 @@ public class MobileAPI {
 					respJson.put("code", CODE);
 					respJson.put("status", false);
 					respJson.put("info", "Error API token.");
-					return JSON.toJSONString(respJson);
+					return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 				}
 
 				// 判断请求参数
 				if (jsonStr == null || jsonStr.isEmpty()) {
 					respJson.put("status", false);
 					respJson.put("info", "The request parameter is required.");
-					return JSON.toJSONString(respJson);
+					return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 				}
 				try {
 					JSONObject jsonObj = (JSONObject) JSON.parse(jsonStr);
@@ -761,7 +761,7 @@ public class MobileAPI {
 							respJson.put("status", false);
 							respJson.put("info", productId + " product is not exist");
 							orderService.deleteOrder(order);
-							return JSON.toJSONString(respJson);
+							return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 						}
 						// 通过优惠列表计算商品价格
 						Float price = product.getPrice();
@@ -821,11 +821,11 @@ public class MobileAPI {
 					respJson.put("status", true);
 					respJson.put("info", "OK");
 					respJson.put("data", data);
-					return JSON.toJSONString(respJson);
+					return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 				} catch (EmosException e) {
 					respJson.put("status", false);
 					respJson.put("info", e.getMessage());
-					return JSON.toJSONString(respJson);
+					return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
 				}
 	}
 
