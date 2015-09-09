@@ -97,14 +97,14 @@
 			<s:message code="login.form.login"/> <i class="m-icon-swapright m-icon-white"></i>
 			</button>
 		</div>		
-		<div class="forget-password">
+		<!-- <div class="forget-password">
 			<h4>忘记密码？</h4>
 			<p>
 				 点击 <a href="javascript:;" id="forget-password">
 				这里 </a>
 				重置密码
 			</p>
-		</div>
+		</div> -->
 		<div class="create-account">
 		
 		</div>

@@ -154,7 +154,7 @@ public class MobileAPI {
 			respJson.put("status", false);
 			respJson.put("code", CODE);
 			respJson.put("info", "Error Init API token.");
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 		try {
 			List<Tlanguage> langs = languageService.getLangListByStoreId(storeId);
@@ -217,11 +217,11 @@ public class MobileAPI {
 			respJson.put("info", "OK");
 			respJson.put("data", dataJson);
             
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		} catch (Exception e) {
 			respJson.put("status", false);
 			respJson.put("info", e.getMessage());
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 	}
 
@@ -235,7 +235,7 @@ public class MobileAPI {
 	 */
 	@RequestMapping(value = "orderCheck", method = RequestMethod.POST)
 	@ResponseBody
-	public String orderCheck(HttpServletResponse response, @RequestHeader("Authorization") String apiKey, @RequestBody String jsonStr) {
+	public String orderCheck(HttpServletResponse response, @RequestParam("Authorization") String apiKey, @RequestBody String jsonStr) {
 		Integer storeId = SystemConfig.STORE_TAKEN_MAP.get(apiKey);
 		JSONObject jsonObj = null;
 		JSONObject respJson = new JSONObject();
@@ -243,13 +243,13 @@ public class MobileAPI {
 			respJson.put("code", CODE);
 			respJson.put("status", false);
 			respJson.put("info", "Error API token.");
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 
 		if (jsonStr == null || jsonStr.isEmpty()) {
 			respJson.put("status", false);
 			respJson.put("info", "The request parameter is required.");
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 
 		try {
@@ -258,13 +258,13 @@ public class MobileAPI {
 			if (appid == null || appid.isEmpty()) {
 				respJson.put("status", false);
 				respJson.put("info", "The parameter appId is required.");
-				return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+				return JSON.toJSONString(respJson);
 			}
-			String orderIds = jsonObj.getString("orderIds");
+			String orderIds = jsonObj.getString("orderId");
 			if (orderIds == null || orderIds.isEmpty() || orderIds.split(",").length == 0) {
 				respJson.put("status", false);
 				respJson.put("info", "The parameter orderIds is required.");
-				return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+				return JSON.toJSONString(respJson);
 			}
 
 			String[] orderIdsStr = orderIds.split(",");
@@ -285,11 +285,11 @@ public class MobileAPI {
 			respJson.put("info", "OK");
 			respJson.put("data", data);
 
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		} catch (EmosException e) {
 			respJson.put("status", false);
 			respJson.put("info", e.getMessage());
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 	}
 
@@ -309,7 +309,7 @@ public class MobileAPI {
 			respJson.put("code", CODE);
 			respJson.put("status", false);
 			respJson.put("info", "Error API token.");
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 
 		try {
@@ -333,11 +333,11 @@ public class MobileAPI {
 			respJson.put("info", "OK");
 			respJson.put("data", menuList);
 
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		} catch (EmosException e) {
 			respJson.put("status", false);
 			respJson.put("info", e.getMessage());
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 	}
 
@@ -362,7 +362,7 @@ public class MobileAPI {
 			respJson.put("code", CODE);
 			respJson.put("status", false);
 			respJson.put("info", "Error API token.");
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 		
 		try {
@@ -374,7 +374,7 @@ public class MobileAPI {
 				respJson.put("status", true);
 				respJson.put("data", menuProductModel);
 				respJson.put("info", "product is not exist");
-				return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+				return JSON.toJSONString(respJson);
 			}
 			// 新建返回数据model
 			List <Tcommodity> comList = null;
@@ -430,11 +430,11 @@ public class MobileAPI {
 			respJson.put("status", true);
 			respJson.put("info", "OK");
 			respJson.put("data", jsonArray);
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		} catch (Exception e) {
 			respJson.put("status", false);
 			respJson.put("info", e.getMessage());
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 	}
     
@@ -456,13 +456,13 @@ public class MobileAPI {
 			respJson.put("code", CODE);
 			respJson.put("status", false);
 			respJson.put("info", "Error API token.");
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 		// 判断请求参数
 		if (productId == null || productId == 0) {
 			respJson.put("status", false);
 			respJson.put("info", "The request parameter productId is required");
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 		try {
 			// 查询商品
@@ -474,7 +474,7 @@ public class MobileAPI {
 				model.setProductId(productId);
 				respJson.put("data", model);
 				respJson.put("info", "product is not exist");
-				return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+				return JSON.toJSONString(respJson);
 			}
 			// 新建返回数据model
 			
@@ -505,147 +505,146 @@ public class MobileAPI {
 			respJson.put("status", true);
 			respJson.put("info", "OK");
 			respJson.put("data", model);
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		} catch (Exception e) {
 			respJson.put("status", false);
 			respJson.put("info", e.getMessage());
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 	}
 	
-	@RequestMapping(value = "putOrder", method = RequestMethod.POST)
+	/**
+	 * 订单同步
+	 * @param request
+	 * @param apiKey  taken
+	 * @param jsonStr  请求参数
+	 * @return
+	 */
+	@RequestMapping(value="/syncOrder",method=RequestMethod.POST)
 	@ResponseBody
-	public String putOrder(HttpServletResponse response, @RequestHeader("Authorization") String apiKey, @RequestBody String jsonStr) {
-		// 获取缓存apiToken
-		String apiToken = SystemConfig.Admin_Setting_Map.get(SystemConstants.CONFIG_API_TOKEN);
-		
-		JSONObject respJson = new JSONObject();
-		// 判断apiToken是否一致
-		if (apiKey == null || !apiKey.equalsIgnoreCase(apiToken)) {
-			respJson.put("code", CODE);
-			respJson.put("status", false);
-			respJson.put("info", "Error API token.");
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
-		}
-
-		// 判断请求参数
-		if (jsonStr == null || jsonStr.isEmpty()) {
-			respJson.put("status", false);
-			respJson.put("info", "The request parameter is required.");
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
-		}
-		try {
-			// 参加满减活动列表
-			// List<Tpromotion> productPromotionList = new
-			// ArrayList<Tpromotion>();
-			//
-			JSONObject jsonObj = (JSONObject) JSON.parse(jsonStr);
-			// 桌号
-			String appId = jsonObj.getString("appId");
-			Integer peopleNum = jsonObj.getInteger("peopleNum");
-			Float orderMoney = jsonObj.getFloat("totalMount");
-			JSONArray products = jsonObj.getJSONArray("products");
-			float totalMoney = 0;
-			float oldMoey = 0;
-			Torder order = new Torder();
-			order.setCreater(appId);
-			order.setCreateTime(new Date().getTime());
-			order.setOrderStatus(0);
-			order.setOrderDiscount(0);
-			order.setOrderTotal(totalMoney);
-			order.setPeopleNum(peopleNum);
-			orderService.createOrder(order);
-			for (Object object : products) {
-				JSONObject pro = (JSONObject) object;
-				// 商品ID
-				Integer productId = pro.getInteger("productId");
-				// 数量
-				Integer count = pro.getInteger("quantity");
-				JSONArray attributes = pro.getJSONArray("attributes");
-				Tcommodity product = commodityService.getTproductByid(productId);
-				if (product == null) {
+	public String syncOrder(HttpServletRequest request,@RequestParam("Authorization") String apiKey,@RequestBody String jsonStr){
+				// 获取缓存apiToken
+				Integer storeId = SystemConfig.STORE_TAKEN_MAP.get(apiKey);
+				JSONObject respJson = new JSONObject();
+				// 判断apiToken是否一致
+				if (storeId == null) {
+					respJson.put("code", CODE);
 					respJson.put("status", false);
-					respJson.put("info", productId + " product is not exist");
-					orderService.deleteOrder(order);
-					return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+					respJson.put("info", "Error API token.");
+					return JSON.toJSONString(respJson);
 				}
-				
-				// 通过优惠列表计算商品价格
-				Float price = product.getPrice();// calculatePrice(product.getOldPrice(),
-													// promotions);
-				if (price == null || price == 0) {
-					price = product.getOldPrice();
+
+				// 判断请求参数
+				if (jsonStr == null || jsonStr.isEmpty()) {
+					respJson.put("status", false);
+					respJson.put("info", "The request parameter is required.");
+					return JSON.toJSONString(respJson);
 				}
-				if (attributes != null) {
-					for (Object object2 : attributes) {
-						JSONObject o = (JSONObject) object2;
-						Integer attrId = o.getInteger("attributeId");
-						TproductAttribute att = productAttributeService.getAttributeByproductidAndattributeid(productId, attrId);
-						String valueIds = o.getString("valueIds");
-						if (att != null) {
-							String prices = att.getPrice();
-							if ((prices != null && !prices.isEmpty()) && (valueIds != null && !valueIds.isEmpty())) {
-								String[] valueIdss = valueIds.split(",");
-								String[] pr = prices.split(",");
-								Integer[] ids = ConvertTools.stringArr2IntArr(valueIdss);
-								for (Integer id : ids) {
-									TattributeValue value = attributeValueService.getAttributeValue(id);
-									if (value.getSort() < pr.length) {
-										if (pr[value.getSort()] != null && !pr[value.getSort()].isEmpty()) {
-											price += Float.valueOf(pr[value.getSort()]);
+				try {
+					JSONObject jsonObj = (JSONObject) JSON.parse(jsonStr);
+					// 桌号
+					String appId = jsonObj.getString("appId");
+					Integer peopleNum = jsonObj.getInteger("peopleNum");
+					Float orderMoney = jsonObj.getFloat("totalMount");
+					JSONArray products = jsonObj.getJSONArray("products");
+					float totalMoney = 0;
+					float oldMoey = 0;
+					Torder order = new Torder();
+					order.setCreater(appId);
+					order.setCreateTime(new Date().getTime());
+					order.setOrderStatus(0);
+					order.setOrderDiscount(0);
+					order.setOrderTotal(totalMoney);
+					order.setPeopleNum(peopleNum);
+					order.setStoreId(storeId);
+					orderService.createOrder(order);
+					for (Object object : products) {
+						JSONObject pro = (JSONObject) object;
+						// 商品ID
+						Integer productId = pro.getInteger("productId");
+						// 数量
+						Integer count = pro.getInteger("quantity");
+						JSONArray attributes = pro.getJSONArray("attributes");
+						Tcommodity product = commodityService.getTproductByid(productId);
+						if (product == null) {
+							respJson.put("status", false);
+							respJson.put("info", productId + " product is not exist");
+							orderService.deleteOrder(order);
+							return JSON.toJSONString(respJson);
+						}
+						// 通过优惠列表计算商品价格
+						Float price = product.getPrice();
+						if (price == null || price == 0) {
+							price = product.getOldPrice();
+						}
+						
+						Float oldPrice = product.getOldPrice();
+						if (oldPrice == null || oldPrice == 0) {
+							product.setOldPrice(price);
+						}
+						
+						if (attributes != null) {
+							for (Object object2 : attributes) {
+								JSONObject o = (JSONObject) object2;
+								Integer attrId = o.getInteger("attributeId");
+								TproductAttribute att = productAttributeService.getAttributeByproductidAndattributeid(productId, attrId);
+								String valueIds = o.getString("valueIds");
+								if (att != null) {
+									String prices = att.getPrice();
+									if ((prices != null && !prices.isEmpty()) && (valueIds != null && !valueIds.isEmpty())) {
+										String[] valueIdss = valueIds.split(",");
+										String[] pr = prices.split(",");
+										Integer[] ids = ConvertTools.stringArr2IntArr(valueIdss);
+										for (Integer id : ids) {
+											TattributeValue value = attributeValueService.getAttributeValue(id);
+											if (value.getSort() < pr.length) {
+												if (pr[value.getSort()] != null && !pr[value.getSort()].isEmpty()) {
+													price += Float.valueOf(pr[value.getSort()]);
+												}
+											}
 										}
 									}
 								}
 							}
 						}
-					}
-				}
 
-				float oneMoney = 0;
-				float oneOldMoney = 0;
-				oneMoney = price * count;
-				oneOldMoney = product.getOldPrice() * count;
-				float oneDis = (product.getOldPrice() - price) * count;
-				TorderItem orderItem = new TorderItem();
-				orderItem.setOrderId(order.getOrderId() + "");
-				orderItem.setProductId(productId);
-				orderItem.setUnitPrice(product.getOldPrice());
-				orderItem.setQuantity(count);
-				orderItem.setCurrPrice(price);
-				orderItem.setDiscount(oneDis);
-				orderItem.setAttributes(JSON.toJSONString(attributes));
-				orderItem.setIsGift(false);
-				orderItemService.createOrderItem(orderItem);
-				totalMoney += oneMoney;
-				oldMoey += oneOldMoney;
-			}
-			/*
-			 * List<Tpromotion> promotionLast =
-			 * compareToPriority(getPromotionList
-			 * (productPromotionList,true),getPromotionList
-			 * (productPromotionList,false)); for (Tpromotion tpromotion :
-			 * promotionLast) {
-			 * if(tpromotion.getPromotionType()==PROMOTION_TYPE_FULL_CUT){
-			 * if(tpromotion.getParamOne()<=totalMoney){ totalMoney = totalMoney
-			 * - Float.valueOf(tpromotion.getParamTwo()); } } }
-			 */
-			order.setOrderDiscount(oldMoey - totalMoney);
-			order.setOrderTotal(totalMoney);
-			logger.info(totalMoney-orderMoney);
-			orderService.update(order);
-			JSONObject data = new JSONObject();
-			data.put("orderId", order.getOrderId());
-			data.put("orderTotal", totalMoney);
-			respJson.put("status", true);
-			respJson.put("info", "OK");
-			respJson.put("data", data);
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
-		} catch (EmosException e) {
-			respJson.put("status", false);
-			respJson.put("info", e.getMessage());
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
-		}
+						float oneMoney = 0;
+						float oneOldMoney = 0;
+						oneMoney = price * count;
+						oneOldMoney = product.getOldPrice() * count;
+					    float oneDis = (product.getOldPrice() - price) * count;
+						TorderItem orderItem = new TorderItem();
+						orderItem.setOrderId(order.getOrderId() + "");
+						orderItem.setProductId(productId);
+						orderItem.setUnitPrice(product.getOldPrice());
+						orderItem.setQuantity(count);
+						orderItem.setCurrPrice(price);
+						orderItem.setDiscount(oneDis);
+						orderItem.setAttributes(JSON.toJSONString(attributes));
+						orderItem.setIsGift(false);
+						orderItemService.createOrderItem(orderItem);
+						totalMoney += oneMoney;
+						oldMoey += oneOldMoney;
+					}
+					order.setOrderDiscount(oldMoey - totalMoney);
+					order.setOrderTotal(totalMoney);
+					logger.info(totalMoney-orderMoney);
+					orderService.update(order);
+					JSONObject data = new JSONObject();
+					data.put("orderId", order.getOrderId());
+					data.put("orderTotal", totalMoney);
+					respJson.put("status", true);
+					respJson.put("info", "OK");
+					respJson.put("data", data);
+					return JSON.toJSONString(respJson);
+				} catch (EmosException e) {
+					respJson.put("status", false);
+					respJson.put("info", e.getMessage());
+					return JSON.toJSONString(respJson);
+				}
 	}
+	
+	
 
 	@RequestMapping(value = "callWaiter/{appId}/{type}", method = RequestMethod.GET)
 	@ResponseBody
@@ -658,18 +657,18 @@ public class MobileAPI {
 			respJson.put("code", CODE);
 			respJson.put("status", false);
 			respJson.put("info", "Error API token.");
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 		// 判断请求参数
 		if (appId == null || appId.isEmpty()) {
 			respJson.put("status", false);
 			respJson.put("info", "The request parameter appId is required");
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 		if (type == null || type.isEmpty()) {
 			respJson.put("status", false);
 			respJson.put("info", "The request parameter type is required");
-			return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+			return JSON.toJSONString(respJson);
 		}
 		Date nowTime = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -700,134 +699,11 @@ public class MobileAPI {
 		respJson.put("data", data);
 		respJson.put("info", msg);
 		respJson.put("status", true);
-		return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
+		return JSON.toJSONString(respJson);
 	}
 
 	
-	/**
-	 * 订单同步
-	 * @param request
-	 * @param apiKey  taken
-	 * @param jsonStr  请求参数
-	 * @return
-	 */
-	@RequestMapping(value="/syncOrder",method=RequestMethod.POST)
-	@ResponseBody
-	public String syncOrder(HttpServletRequest request,@RequestHeader("Authorization") String apiKey,@RequestBody String jsonStr){
-				// 获取缓存apiToken
-				Integer storeId = SystemConfig.STORE_TAKEN_MAP.get(apiKey);
-				JSONObject respJson = new JSONObject();
-				// 判断apiToken是否一致
-				if (storeId == null) {
-					respJson.put("code", CODE);
-					respJson.put("status", false);
-					respJson.put("info", "Error API token.");
-					return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
-				}
-
-				// 判断请求参数
-				if (jsonStr == null || jsonStr.isEmpty()) {
-					respJson.put("status", false);
-					respJson.put("info", "The request parameter is required.");
-					return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
-				}
-				try {
-					JSONObject jsonObj = (JSONObject) JSON.parse(jsonStr);
-					// 桌号
-					String appId = jsonObj.getString("appId");
-					Integer peopleNum = jsonObj.getInteger("peopleNum");
-					Float orderMoney = jsonObj.getFloat("totalMount");
-					JSONArray products = jsonObj.getJSONArray("products");
-					float totalMoney = 0;
-					float oldMoey = 0;
-					Torder order = new Torder();
-					order.setCreater(appId);
-					order.setCreateTime(new Date().getTime());
-					order.setOrderStatus(1);
-					order.setOrderDiscount(0);
-					order.setOrderTotal(totalMoney);
-					order.setPeopleNum(peopleNum);
-					order.setStoreId(storeId);
-					orderService.createOrder(order);
-					for (Object object : products) {
-						JSONObject pro = (JSONObject) object;
-						// 商品ID
-						Integer productId = pro.getInteger("productId");
-						// 数量
-						Integer count = pro.getInteger("quantity");
-						JSONArray attributes = pro.getJSONArray("attributes");
-						Tcommodity product = commodityService.getTproductByid(productId);
-						if (product == null) {
-							respJson.put("status", false);
-							respJson.put("info", productId + " product is not exist");
-							orderService.deleteOrder(order);
-							return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
-						}
-						// 通过优惠列表计算商品价格
-						Float price = product.getPrice();
-						if (price == null || price == 0) {
-							price = product.getOldPrice();
-						}
-						if (attributes != null) {
-							for (Object object2 : attributes) {
-								JSONObject o = (JSONObject) object2;
-								Integer attrId = o.getInteger("attributeId");
-								TproductAttribute att = productAttributeService.getAttributeByproductidAndattributeid(productId, attrId);
-								String valueIds = o.getString("valueIds");
-								if (att != null) {
-									String prices = att.getPrice();
-									if ((prices != null && !prices.isEmpty()) && (valueIds != null && !valueIds.isEmpty())) {
-										String[] valueIdss = valueIds.split(",");
-										String[] pr = prices.split(",");
-										Integer[] ids = ConvertTools.stringArr2IntArr(valueIdss);
-										for (Integer id : ids) {
-											TattributeValue value = attributeValueService.getAttributeValue(id);
-											if (value.getSort() < pr.length) {
-												if (pr[value.getSort()] != null && !pr[value.getSort()].isEmpty()) {
-													price += Float.valueOf(pr[value.getSort()]);
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-
-						float oneMoney = 0;
-						float oneOldMoney = 0;
-						oneMoney = price * count;
-						oneOldMoney = product.getOldPrice() * count;
-						float oneDis = (product.getOldPrice() - price) * count;
-						TorderItem orderItem = new TorderItem();
-						orderItem.setOrderId(order.getOrderId() + "");
-						orderItem.setProductId(productId);
-						orderItem.setUnitPrice(product.getOldPrice());
-						orderItem.setQuantity(count);
-						orderItem.setCurrPrice(price);
-						orderItem.setDiscount(oneDis);
-						orderItem.setAttributes(JSON.toJSONString(attributes));
-						orderItem.setIsGift(false);
-						orderItemService.createOrderItem(orderItem);
-						totalMoney += oneMoney;
-						oldMoey += oneOldMoney;
-					}
-					order.setOrderDiscount(oldMoey - totalMoney);
-					order.setOrderTotal(totalMoney);
-					logger.info(totalMoney-orderMoney);
-					orderService.update(order);
-					JSONObject data = new JSONObject();
-					data.put("orderId", order.getOrderId());
-					data.put("orderTotal", totalMoney);
-					respJson.put("status", true);
-					respJson.put("info", "OK");
-					respJson.put("data", data);
-					return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
-				} catch (EmosException e) {
-					respJson.put("status", false);
-					respJson.put("info", e.getMessage());
-					return "JSON_CALLBACK("+JSON.toJSONString(respJson)+")";
-				}
-	}
+	
 
 	/**
 	 * 装载优惠信息 将商品参加的所有优惠活动装载到model中
@@ -897,22 +773,7 @@ public class MobileAPI {
 					}
 				}
 			}
-			/*
-			 * for (TproductImage tproductImage : images) { String filePath =
-			 * tproductImage.getImageUrl(); file = new File(qian +
-			 * filePath.substring(filePath.lastIndexOf("/"))); if
-			 * (!file.exists()) { String newPath = qian + tproductImage.getId()
-			 * + "." + tproductImage.getImageSuffix(); File newImgePath = new
-			 * File(newPath); try { File uplaodDir = new File(qian); if
-			 * (!uplaodDir.isDirectory()) { uplaodDir.mkdirs(); } if
-			 * (tproductImage.getImage() != null && !newImgePath.exists()) {
-			 * ImageOutputStream ios =
-			 * ImageIO.createImageOutputStream(newImgePath);
-			 * ios.write(tproductImage.getImage()); tproductImage.setImageUrl(z
-			 * + tproductImage.getId() + "." + tproductImage.getImageSuffix());
-			 * } } catch (IOException e) { // TODO Auto-generated catch block
-			 * e.printStackTrace(); } } }
-			 */
+			
 
 			imageList = new String[images.size()];
 			for (int i = 0; i < images.size(); i++) {

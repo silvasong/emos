@@ -58,7 +58,7 @@ var GoodsTable = function () {
 	           {   data: "menuname" },
 	           {   data: "productName"},
 	           {   data: "price"},
-	           {   data: "oldPrice" },
+//	           {   data: "oldPrice" },
 	           {   data: "isPut",
 	        	   'render':function(data,type,row){
 	        		   var temp =loadProperties("goods.page.info.not",locale,rootURI);

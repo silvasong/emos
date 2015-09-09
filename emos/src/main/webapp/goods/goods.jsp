@@ -241,9 +241,9 @@
 											<th><s:message code="product.category.name"/></th>
 											<th><s:message code="product.product.name"/></th>
 											<th><s:message code="product.price"/></th>
-											<th><s:message code="product.oldprice"/></th>
+											
 											<th><s:message code="product.isput"/></th>
-											<th><s:message code="product.sort"/></th>
+											<th>制作时间</th>
 										<!--  	<th>Status</th>-->
 										</tr>
 										</thead>																

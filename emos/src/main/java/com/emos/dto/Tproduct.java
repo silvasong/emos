@@ -17,12 +17,13 @@ public class Tproduct implements java.io.Serializable {
 	private float price;
 	private Integer sku;
 	private boolean recommend;
-	private Integer sort;
+	
 	private boolean status;
 	private Tmenu tmenu;
 	private Boolean isPut=false;
 	private Tcategory tcategory;
 	private Integer specid;
+	private Integer sort;
 	@SuppressWarnings("unused")
 	private String  menuname;
 	@SuppressWarnings("unused")
@@ -57,12 +58,15 @@ public class Tproduct implements java.io.Serializable {
 		this.sort = sort;
 		this.status=status;
 	}
+   
+
+	
+	
+	
+	
+	
 
 
-	
-	
-	
-	
 	public Integer getSpecid() {
 		return specid;
 	}

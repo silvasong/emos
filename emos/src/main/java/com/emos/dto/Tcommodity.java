@@ -27,6 +27,7 @@ public class Tcommodity implements Serializable{
 	private Integer sku;
 	private boolean recommend;
 	private Integer sort;
+	
 	private boolean status;
 	private Tmenu tmenu;
 	private Tcategory tcategory;

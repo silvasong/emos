@@ -266,7 +266,7 @@
 									
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label col-md-3"><s:message code="product.sort"/></label>
+											<label class="control-label col-md-3">制作时间</label>
 											<div class="col-md-9">
 												<form:input path="sort" cssClass="form-control"/>												
 											</div>
@@ -283,7 +283,7 @@
 									</div>		
 								</div>
 
-								<%-- <div class="row">
+								 <div class="row">
 										<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label col-md-3"><s:message code="product.recommend"/></label>
@@ -299,7 +299,7 @@
 											</div>
 										</div>
 									</div>														
-								</div> --%>
+								</div> 
 								<%-- <div class="portlet light bg-inverse form-fit">
 									<div class="portlet-title">
 										<div class="caption">
