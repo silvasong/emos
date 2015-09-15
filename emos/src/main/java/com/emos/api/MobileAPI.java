@@ -399,6 +399,7 @@ public class MobileAPI {
 				for(Tcommodity product : productMap.get(key)){
                      model = new ProductModel();
 					 model.setProductId(product.getId());
+					 model.setSort(product.getSort());
                     if (product.isStatus()&&product.getIsPut()) {
 						model.setProductId(product.getId());
 						model.setMenuId(product.getTmenu().getMenuId());
@@ -482,6 +483,7 @@ public class MobileAPI {
 
 			if (product.isStatus()&&product.getIsPut()) {
 				model.setProductId(product.getId());
+				model.setSort(product.getSort());
 				model.setMenuId(product.getTmenu().getMenuId());
 				BeanUtils.copyProperties(product, model, "attributes", "promotions", "images");
 				// 装载需要多语言化得字段
